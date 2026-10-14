@@ -28,6 +28,8 @@ wordcraft-zotero = { path = "crates/zotero" }
 wordcraft-control-key = { path = "crates/control-key" }
 wordcraft-ui-egui = { path = "crates/ui-egui" }
 wordcraft-metafile = { path = "crates/metafile" }
+# Suíte FisiLab (UFRGS): palette, splash screen and About window shared by the suite's apps.
+fisilab-brand = { path = "crates/fisilab-brand" }
 
 # foundation
 kurbo = { version = "0.13", features = ["serde"] }

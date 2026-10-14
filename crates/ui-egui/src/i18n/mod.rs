@@ -35,6 +35,11 @@ use catalog::Catalog;
 /// The `language` setting that follows the system.
 pub const AUTO: &str = "auto";
 
+/// Suíte FisiLab: the `language` setting of a fresh install, Brazilian Portuguese. File › Options
+/// still offers `auto` and every other language, and a saved choice is kept. Tests keep `auto`,
+/// which they resolve to English, because they drive the interface by its English labels.
+pub const DEFAULT_LANGUAGE: &str = if cfg!(test) { AUTO } else { "pt-br" };
+
 /// One supported interface language.
 pub struct LangInfo {
     /// BCP 47 code, lowercase (`ja`, `zh-hans`). Also the `language` setting's value.

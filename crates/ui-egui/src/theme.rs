@@ -11,10 +11,17 @@ pub const APP_INK: Color32 = Color32::from_rgb(0x2B, 0x47, 0xB5);
 /// The interface theme setting (File › Options › General, View › Interface Theme): a fixed light or
 /// dark palette, or `System`, which follows the OS light/dark appearance live (#115). Dark page
 /// (View › Switch Modes) is separate: it changes how pages are drawn, never the interface (#312).
+///
+/// Suíte FisiLab: "UFRGS Noite" (dark, the default) and "UFRGS Dia" (light) use the suite's
+/// palette (`fisilab_brand::palette`); the upstream Light, Dark and System themes stay available.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 #[serde(from = "String", into = "String")]
 pub enum Appearance {
+    /// "UFRGS Noite": the Suíte FisiLab's dark palette.
     #[default]
+    UfrgsNoite,
+    /// "UFRGS Dia": the Suíte FisiLab's light palette.
+    UfrgsDia,
     Light,
     Dark,
     System,
@@ -22,11 +29,14 @@ pub enum Appearance {
 
 impl Appearance {
     /// In menu order.
-    pub const ALL: [Appearance; 3] = [Appearance::System, Appearance::Light, Appearance::Dark];
+    pub const ALL: [Appearance; 5] =
+        [Appearance::UfrgsNoite, Appearance::UfrgsDia, Appearance::System, Appearance::Light, Appearance::Dark];
 
     /// The value used in `ui.json` and by the `ui.theme` command.
     pub fn code(self) -> &'static str {
         match self {
+            Appearance::UfrgsNoite => "ufrgsNoite",
+            Appearance::UfrgsDia => "ufrgsDia",
             Appearance::Light => "light",
             Appearance::Dark => "dark",
             Appearance::System => "system",
@@ -40,6 +50,8 @@ impl Appearance {
     /// The English label (translated with `tl!` where shown).
     pub fn label(self) -> &'static str {
         match self {
+            Appearance::UfrgsNoite => "UFRGS Noite",
+            Appearance::UfrgsDia => "UFRGS Dia",
             Appearance::Light => "Light",
             Appearance::Dark => "Dark",
             Appearance::System => "Use system setting",
@@ -50,17 +62,22 @@ impl Appearance {
     /// `System` falls back to light when the OS reports none.
     pub fn is_dark(self, system: Option<egui::Theme>) -> bool {
         match self {
-            Appearance::Light => false,
-            Appearance::Dark => true,
+            Appearance::Light | Appearance::UfrgsDia => false,
+            Appearance::Dark | Appearance::UfrgsNoite => true,
             Appearance::System => system == Some(egui::Theme::Dark),
         }
+    }
+
+    /// Whether this setting uses the Suíte FisiLab palette ("UFRGS Noite" or "UFRGS Dia").
+    pub fn is_ufrgs(self) -> bool {
+        matches!(self, Appearance::UfrgsNoite | Appearance::UfrgsDia)
     }
 
     /// The egui theme preference: `System` stays automatic rather than resolving to a fixed theme.
     pub fn preference(self) -> egui::ThemePreference {
         match self {
-            Appearance::Light => egui::ThemePreference::Light,
-            Appearance::Dark => egui::ThemePreference::Dark,
+            Appearance::Light | Appearance::UfrgsDia => egui::ThemePreference::Light,
+            Appearance::Dark | Appearance::UfrgsNoite => egui::ThemePreference::Dark,
             Appearance::System => egui::ThemePreference::System,
         }
     }
@@ -249,6 +266,11 @@ pub struct Tokens {
     pub checked: Color32,
     pub accent: Color32,
     pub accent_text: Color32,
+    /// Fill of a filled accent control under the pointer (the title bar's pill, the Share button);
+    /// `on_accent` stays readable on it.
+    pub accent_hover: Color32,
+    /// Hyperlinks in dialogs and panes.
+    pub link: Color32,
     /// Text/icon colour drawn on top of `accent` (e.g. keytip badge letters).
     pub on_accent: Color32,
     pub input: Color32,
@@ -292,6 +314,8 @@ impl Tokens {
             checked: Color32::from_rgb(0xDD, 0xE3, 0xF8),
             accent: APP_COLOR,
             accent_text: APP_INK,
+            accent_hover: APP_INK,
+            link: APP_INK,
             on_accent: Color32::WHITE,
             input: Color32::WHITE,
             input_border: Color32::from_rgb(0x8A, 0x8A, 0x8A),
@@ -331,6 +355,8 @@ impl Tokens {
             checked: Color32::from_rgb(0x2E, 0x3A, 0x66),
             accent: Color32::from_rgb(0x7A, 0x93, 0xF0),
             accent_text: Color32::from_rgb(0x9C, 0xB0, 0xF5),
+            accent_hover: Color32::from_rgb(0x9C, 0xB0, 0xF5),
+            link: Color32::from_rgb(0x9C, 0xB0, 0xF5),
             // Dark text on the light dark-theme accent: white on #7a93f0 is only 2.9:1 (#655).
             on_accent: Color32::from_rgb(0x11, 0x16, 0x2E),
             input: Color32::from_rgb(0x1E, 0x1E, 0x1E),
@@ -352,9 +378,77 @@ impl Tokens {
             orange: Color32::from_rgb(0xF0, 0xA0, 0x50),
         }
     }
-    pub fn get(ctx: &egui::Context) -> Tokens {
-        if ctx.global_style().visuals.dark_mode { Tokens::dark() } else { Tokens::light() }
+    /// "UFRGS Noite" (dark) or "UFRGS Dia" (light): the Suíte FisiLab palette
+    /// (`fisilab_brand::palette`) on the upstream layout. Document-content colours (find
+    /// highlight, page shadow, selection handles) keep the upstream values for the same lightness.
+    pub fn ufrgs(dark: bool) -> Self {
+        use fisilab_brand::palette;
+        let t = palette::tons(dark);
+        let base = if dark { Tokens::dark() } else { Tokens::light() };
+        Tokens {
+            dark,
+            title_bar: t.painel,
+            ribbon: t.elevado,
+            tab_strip: t.painel,
+            canvas: t.fundo,
+            panel: t.elevado,
+            border: t.borda,
+            border_strong: mix(t.borda, t.texto_fraco, 0.35),
+            text: t.texto,
+            text_dim: t.texto_fraco,
+            text_disabled: mix(t.texto_fraco, t.elevado, 0.45),
+            icon: mix(t.texto, t.texto_fraco, 0.25),
+            hover: t.hover,
+            pressed: t.ativo,
+            checked: mix(t.elevado, t.destaque, 0.22),
+            accent: t.destaque,
+            // Accent-coloured text (the current ribbon tab, status messages): the brand's hover red,
+            // lifted towards the text colour on the dark theme so it reads at 4.5:1.
+            accent_text: if dark { mix(t.destaque_hover, t.texto, 0.25) } else { t.destaque_hover },
+            // On the dark theme the brand's lighter hover red is too light under the cream text
+            // drawn on it, so a filled control darkens to the flame red instead.
+            accent_hover: if dark { palette::VERMELHO } else { t.destaque_hover },
+            link: t.foco,
+            on_accent: t.texto_destaque,
+            input: if dark { t.fundo } else { t.elevado },
+            input_border: t.texto_fraco,
+            group_label: t.texto_fraco,
+            ruler: t.elevado,
+            ruler_margin: t.ativo,
+            ruler_tick: t.texto_fraco,
+            status_bar: t.painel,
+            selection: t.selecao,
+            menu: t.elevado,
+            blue: t.foco,
+            red: t.erro,
+            green: t.sucesso,
+            orange: t.aviso,
+            ..base
+        }
     }
+
+    /// The palette egui is drawing with now ([`apply`] records which family is installed).
+    pub fn get(ctx: &egui::Context) -> Tokens {
+        let dark = ctx.global_style().visuals.dark_mode;
+        if ctx.data(|d| d.get_temp::<bool>(ufrgs_palette_id())).unwrap_or(false) {
+            Tokens::ufrgs(dark)
+        } else if dark {
+            Tokens::dark()
+        } else {
+            Tokens::light()
+        }
+    }
+}
+
+/// Where [`apply`] records whether the Suíte FisiLab palette is installed.
+fn ufrgs_palette_id() -> egui::Id {
+    egui::Id::new("fisitexto-ufrgs-palette")
+}
+
+/// `a` moved towards `b` by `t` (0–1), channel by channel (both opaque).
+fn mix(a: Color32, b: Color32, t: f32) -> Color32 {
+    let ch = |x: u8, y: u8| (f32::from(x) + (f32::from(y) - f32::from(x)) * t.clamp(0.0, 1.0)).round().clamp(0.0, 255.0) as u8;
+    Color32::from_rgb(ch(a.r(), b.r()), ch(a.g(), b.g()), ch(a.b(), b.b()))
 }
 
 /// Install the UI fonts (Inter, JetBrains Mono) and the craft-fonts CJK interface faces if built
@@ -598,9 +692,15 @@ fn tracked_job(text: &str, font: &FontId, tracking: f32, color: Color32) -> egui
 /// appearance; a manual Light or Dark pins egui (and the window decorations) to that theme.
 /// Setting a concrete theme for `System` would pin the native window too, and macOS then stops
 /// reporting appearance changes (#311).
+///
+/// "UFRGS Noite" and "UFRGS Dia" install the Suíte FisiLab palette in both slots instead and pin
+/// egui to its dark or light one.
 pub fn apply(ctx: &egui::Context, appearance: Appearance) {
-    ctx.set_visuals_of(egui::Theme::Light, visuals(&Tokens::light()));
-    ctx.set_visuals_of(egui::Theme::Dark, visuals(&Tokens::dark()));
+    let ufrgs = appearance.is_ufrgs();
+    let (light, dark) = if ufrgs { (Tokens::ufrgs(false), Tokens::ufrgs(true)) } else { (Tokens::light(), Tokens::dark()) };
+    ctx.set_visuals_of(egui::Theme::Light, visuals(&light));
+    ctx.set_visuals_of(egui::Theme::Dark, visuals(&dark));
+    ctx.data_mut(|d| d.insert_temp(ufrgs_palette_id(), ufrgs));
     ctx.all_styles_mut(|s| {
         s.spacing.item_spacing = egui::vec2(6.0, 4.0);
         s.spacing.button_padding = egui::vec2(8.0, 3.0);
@@ -641,7 +741,7 @@ fn visuals(t: &Tokens) -> Visuals {
     v.menu_corner_radius = CornerRadius::same(6);
     v.selection.bg_fill = t.selection;
     v.selection.stroke = Stroke::new(1.0, t.accent);
-    v.hyperlink_color = t.accent_text;
+    v.hyperlink_color = t.link;
     v.widgets.noninteractive.bg_stroke = Stroke::new(1.0, t.border);
     v.widgets.noninteractive.fg_stroke = Stroke::new(1.0, t.text);
     v.widgets.inactive.bg_fill = t.input;
@@ -690,8 +790,8 @@ mod tests {
     /// on the accent and on its hover shade, in both themes.
     #[test]
     fn on_accent_reads_on_the_accent() {
-        for t in [super::Tokens::light(), super::Tokens::dark()] {
-            for (name, bg) in [("accent", t.accent), ("hover", t.accent_text)] {
+        for t in all_palettes() {
+            for (name, bg) in [("accent", t.accent), ("hover", t.accent_hover)] {
                 let r = contrast(t.on_accent, bg);
                 assert!(r >= 4.5, "dark={}: on_accent on {name} is {r:.2}:1", t.dark);
             }
@@ -701,12 +801,55 @@ mod tests {
     /// #657: text field and combo outlines reach 3:1 against the field and everything it sits on.
     #[test]
     fn input_borders_reach_three_to_one() {
-        for t in [super::Tokens::light(), super::Tokens::dark()] {
+        for t in all_palettes() {
             for (name, bg) in [("input", t.input), ("ribbon", t.ribbon), ("panel", t.panel), ("menu", t.menu), ("title bar", t.title_bar)] {
                 let r = contrast(t.input_border, bg);
                 assert!(r >= 3.0, "dark={}: input_border on {name} is {r:.2}:1", t.dark);
             }
         }
+    }
+
+    /// Every palette the interface can draw with: the upstream light and dark ones and the Suíte
+    /// FisiLab's "UFRGS Dia" and "UFRGS Noite".
+    fn all_palettes() -> [super::Tokens; 4] {
+        [super::Tokens::light(), super::Tokens::dark(), super::Tokens::ufrgs(false), super::Tokens::ufrgs(true)]
+    }
+
+    /// Suíte FisiLab: the UFRGS themes come first, "UFRGS Noite" is the default, their codes read
+    /// back (any case), and text, dimmed text, accent text and links reach 4.5:1 on the chrome.
+    #[test]
+    fn ufrgs_themes_are_the_default_and_readable() {
+        use super::Appearance;
+        assert_eq!(Appearance::default(), Appearance::UfrgsNoite);
+        assert_eq!(&Appearance::ALL[..2], &[Appearance::UfrgsNoite, Appearance::UfrgsDia]);
+        for a in Appearance::ALL {
+            assert_eq!(Appearance::from_code(a.code()), Some(a));
+            assert_eq!(Appearance::from_code(&a.code().to_uppercase()), Some(a));
+        }
+        assert!(Appearance::UfrgsNoite.is_dark(Some(egui::Theme::Light)) && !Appearance::UfrgsDia.is_dark(Some(egui::Theme::Dark)));
+        assert_eq!(Appearance::UfrgsNoite.label(), "UFRGS Noite");
+        assert_eq!(Appearance::UfrgsDia.label(), "UFRGS Dia");
+        for t in [super::Tokens::ufrgs(false), super::Tokens::ufrgs(true)] {
+            let tons = fisilab_brand::palette::tons(t.dark);
+            assert_eq!((t.canvas, t.title_bar, t.accent, t.text), (tons.fundo, tons.painel, tons.destaque, tons.texto));
+            for (name, bg) in [("ribbon", t.ribbon), ("title bar", t.title_bar), ("panel", t.panel), ("menu", t.menu)] {
+                for (what, fg) in [("text", t.text), ("text_dim", t.text_dim), ("accent_text", t.accent_text), ("link", t.link)] {
+                    let r = contrast(fg, bg);
+                    assert!(r >= 4.5, "dark={}: {what} on {name} is {r:.2}:1", t.dark);
+                }
+            }
+        }
+        // The palette egui draws with follows the setting.
+        let ctx = egui::Context::default();
+        for (a, want) in [(Appearance::UfrgsNoite, super::Tokens::ufrgs(true)), (Appearance::UfrgsDia, super::Tokens::ufrgs(false))] {
+            super::apply(&ctx, a);
+            ctx.run_ui(egui::RawInput::default(), |_| {}).drop_without_applying_deltas();
+            assert_eq!(super::Tokens::get(&ctx).ribbon, want.ribbon, "{a:?}");
+            assert_eq!(ctx.global_style().visuals.panel_fill, want.ribbon, "{a:?}");
+        }
+        super::apply(&ctx, Appearance::Light);
+        ctx.run_ui(egui::RawInput::default(), |_| {}).drop_without_applying_deltas();
+        assert_eq!(super::Tokens::get(&ctx).ribbon, super::Tokens::light().ribbon);
     }
 
     /// #565: the composition of an input method (Bangla through ibus) drew as boxes because only the

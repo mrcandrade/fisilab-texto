@@ -1333,6 +1333,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "aedcfb3409746eddb02b9e19ebda1c3394f759a152e48ee875a0844d1b955484"
 
 [[package]]
+name = "fisilab-brand"
+version = "1.0.0"
+dependencies = [
+ "egui",
+]
+
+[[package]]
 name = "fixedbitset"
 version = "0.5.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5106,6 +5113,7 @@ dependencies = [
  "dispatch2",
  "eframe",
  "egui",
+ "fisilab-brand",
  "fmv-macos-events",
  "getrandom 0.3.4",
  "log",
@@ -5341,6 +5349,7 @@ dependencies = [
  "craft-ui",
  "egui",
  "egui_kittest",
+ "fisilab-brand",
  "image",
  "js-sys",
  "log",

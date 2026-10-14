@@ -1,0 +1,94 @@
+# Modificações do FisiTexto em relação ao WordCraft
+
+O FisiTexto é uma versão modificada do [WordCraft](https://github.com/storytold/wordcraft)
+(© 2026 ArtCraft Team e contribuidores do WordCraft, MIT OR Apache-2.0), feita pelo
+**FisiLab — LARFIC · UFRGS** em parceria com o **CTA — Centro de Tecnologia Acadêmica** para a
+Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
+
+## O que mudou e por quê
+
+### Nome e marca
+- O produto passou a se chamar **FisiTexto** em todo texto visível: título da janela, nome do
+  aplicativo, janela "Sobre", diálogos, mensagens de status e de erro, tela inicial, Opções,
+  textos de ajuda da linha de comando e do servidor MCP, e nos catálogos de tradução
+  (`crates/ui-egui/src/i18n/*.tsv`, chaves e traduções atualizadas juntas). Os metadados gravados
+  nos arquivos exportados (aplicativo do `.docx`, gerador de PDF/ODT/RTF/HTML/LaTeX) também dizem
+  FisiTexto.
+- **Motivo:** o NOTICE do WordCraft diz que o nome, o logotipo e as marcas ArtCraft não estão
+  cobertos pela licença aberta. Por isso a pasta `docs/brand/` (logotipos e wordmark ArtCraft) foi
+  removida e nenhuma marca ArtCraft é exibida ou embutida. O crédito em texto ao ArtCraft Team e ao
+  WordCraft foi mantido (e é exigido).
+
+### Identidade visual da Suíte FisiLab
+- Novo crate `crates/fisilab-brand` (compartilhado pela suíte): paleta, tela de abertura com a
+  logo do CTA (cerca de 3 s, pode ser pulada com um clique ou tecla; `FISILAB_NO_SPLASH=1`
+  desliga) e a janela **"Sobre a Suíte FisiLab"** com créditos, manifesto e logos da UFRGS e do CTA.
+- Ícone novo do aplicativo (`assets/fisilab/fisitexto*.png`, `fisitexto.ico`) na janela, na barra
+  de tarefas e no executável.
+- Temas **UFRGS Noite** (escuro, agora o padrão) e **UFRGS Dia** (claro), montados a partir das cores
+  da marca (`fisilab_brand::palette`), sem mudar o layout. Os temas originais (Claro, Escuro e
+  "Usar configuração do sistema") continuam disponíveis em Exibir › Tema da interface e em
+  Arquivo › Opções. Foram acrescentados aos tokens do tema `accent_hover` (fundo dos botões de
+  destaque sob o ponteiro) e `link` (cor dos links), para manter o contraste mínimo de 4,5:1.
+  O comando `ui.theme` aceita `ufrgsNoite` e `ufrgsDia`; `ui.dark` alterna entre Noite e Dia quando
+  um tema UFRGS está ativo.
+
+### Ajuda, links e comunidade
+- Guia **Ajuda**: o botão "Community Discord" foi trocado por **"Sobre a Suíte FisiLab"**, e um novo
+  grupo "Suíte FisiLab" traz **Site da Suíte FisiLab**, **Manifesto pelas tecnologias livres**,
+  **Projeto original (WordCraft)** e **Reportar um problema**
+  (`https://github.com/mrcandrade/fisitexto/issues`). Novos comandos de interface: `ui.fisilab`,
+  `ui.fisilabSite`, `ui.manifesto`, `ui.upstream`, `ui.reportIssue` (o `ui.discord` foi removido).
+- O botão "Discord" da barra de título virou o botão **FisiLab**, que abre a janela "Sobre a Suíte
+  FisiLab" (pode ser escondido em Arquivo › Opções › Geral).
+- No Backstage (Arquivo), o link "Discord community" virou "Sobre a Suíte FisiLab".
+- A janela "Sobre o FisiTexto" mantém as abas de contribuidores e modelos do WordCraft (crédito aos
+  autores originais), com os links da suíte no lugar do site e do Discord da ArtCraft.
+- O documento de exemplo, o servidor MCP e o cabeçalho LaTeX deixaram de apontar para
+  getartcraft.com/discord.
+
+### Comunicação com servidores externos
+- O WordCraft não tem verificação de atualizações, telemetria nem envio de relatórios de falha:
+  não há cliente HTTP no projeto. As únicas conexões de rede são locais (canal de controle e
+  ponte MCP em `127.0.0.1`, e a integração com o Zotero instalado no computador). Nada precisou
+  ser desligado; os links que abriam páginas da ArtCraft foram redirecionados (acima).
+
+### Idioma
+- Uma instalação nova abre em **português do Brasil** (`language = "pt-br"` por padrão); a escolha
+  em Arquivo › Opções (incluindo "automático") continua funcionando e é guardada. Com a interface em
+  português, documentos novos são escritos em pt-BR.
+
+### Executáveis, identificador e pastas
+- Executáveis: `fisitexto.exe` (aplicativo) e `fisitexto-cli.exe` (linha de comando), definidos com
+  `[[bin]]` nos crates `apps/wordcraft` e `apps/wordcraft-cli` (os nomes dos pacotes Cargo não
+  mudaram: `cargo run -p wordcraft`).
+- Identificador do aplicativo: `br.ufrgs.fisilab.fisitexto` (janela, arquivo `.desktop`,
+  metainfo e MIME do Linux).
+- Pasta de configurações: `%APPDATA%\FisiTexto` (Windows), `~/Library/Application Support/FisiTexto`
+  (macOS) e `~/.config/fisitexto` (Linux) — não se mistura com uma instalação do WordCraft.
+  Dicionários do usuário: `%LOCALAPPDATA%\FisiTexto\dictionaries`.
+- Recursos do Windows (`apps/wordcraft/build.rs`): ícone `assets/fisilab/fisitexto.ico`,
+  ProductName, FileDescription, CompanyName e LegalCopyright da Suíte FisiLab.
+- "Tornar padrão" no Windows abre Configurações › Aplicativos padrão em
+  `registeredAppMachine=FisiTexto`.
+- `packaging/windows/wordcraft.wxs` e `package.ps1` foram adaptados (nomes, novo UpgradeCode e GUIDs,
+  ProgIds `FisiLab.FisiTexto.*`, descrições em português). O instalador oficial da suíte é gerado
+  separadamente (Inno Setup).
+
+### Repositório
+- Removida a pasta `.github/` (fluxos de CI, release e lint do projeto original, que rodariam
+  contra este fork).
+- `README.md` novo, em português; o original está em `README.upstream.md`.
+- `NOTICE` ganhou um cabeçalho do FisiTexto; o texto original segue abaixo dele, sem alterações.
+
+## O que não mudou
+- Todo o editor: formatos de arquivo, diagramação, comandos, atalhos, revisão, mala direta,
+  automação (CLI, canal de controle, MCP) e as traduções existentes.
+- Nomes de crates, módulos e identificadores internos (`wordcraft-*`), variáveis de ambiente
+  (`WORDCRAFT_*`), o identificador do servidor MCP (`wordcraft`), URIs `wordcraft://`, e os
+  comentários e a documentação histórica em `docs/`.
+- `LICENSE-MIT`, `LICENSE-APACHE` e `ATTRIBUTION.md`.
+- Os temas originais Claro, Escuro e Sistema, e os scripts de empacotamento para Linux, macOS e web
+  (só o arquivo `.desktop`, o metainfo, o MIME e o `APP_ID` dos scripts do Linux passaram ao novo
+  identificador; esses scripts ainda esperam os binários e ícones com os nomes antigos, não foram
+  adaptados e não são usados pela suíte, que distribui apenas para Windows).

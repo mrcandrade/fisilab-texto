@@ -4,8 +4,12 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish = false
-default-run = "wordcraft"
-description = "WordCraft desktop app"
+default-run = "fisitexto"
+description = "FisiTexto desktop app (Suíte FisiLab; based on WordCraft)"
+
+[[bin]]
+name = "fisitexto"
+path = "src/main.rs"
 
 [lints]
 workspace = true
@@ -17,6 +21,7 @@ wordcraft-proof = { workspace = true }
 # Fonts the user added (#582) load from the settings folder at start-up.
 wordcraft-fonts = { workspace = true }
 wordcraft-ui-egui = { workspace = true }
+fisilab-brand = { workspace = true }
 # The control key file's location (shared with the MCP bridge).
 wordcraft-control-key = { workspace = true }
 eframe = { workspace = true, features = ["default_fonts", "wgpu", "accesskit", "wayland", "x11", "links"] }

@@ -20,6 +20,29 @@ macro_rules! tl {
     };
 }
 
+/// Suíte FisiLab: how FisiTexto presents itself in the splash screen and in the "Sobre a Suíte
+/// FisiLab" window (`fisilab_brand`).
+pub const APP_INFO: fisilab_brand::AppInfo = fisilab_brand::AppInfo {
+    name: "FisiTexto",
+    tagline: "Processador de texto",
+    equivalent: "Microsoft Word",
+    version: env!("CARGO_PKG_VERSION"),
+    upstream_name: "WordCraft",
+    upstream_url: "https://github.com/storytold/wordcraft",
+    upstream_copyright: "© 2026 ArtCraft Team e contribuidores do WordCraft",
+};
+
+/// Where FisiTexto's problems are reported (Help › Reportar um problema).
+pub const REPORT_ISSUE_URL: &str = "https://github.com/mrcandrade/fisitexto/issues";
+
+/// The Suíte FisiLab links of the Help tab and the Backstage: (command id, label, address).
+pub const FISILAB_LINKS: [(&str, &str, &str); 4] = [
+    ("ui.fisilabSite", "Site da Suíte FisiLab", fisilab_brand::SUITE_URL),
+    ("ui.manifesto", "Manifesto pelas tecnologias livres", fisilab_brand::MANIFESTO_URL),
+    ("ui.upstream", "Projeto original (WordCraft)", APP_INFO.upstream_url),
+    ("ui.reportIssue", "Reportar um problema", REPORT_ISSUE_URL),
+];
+
 pub mod a11y;
 pub mod a11y_pane;
 pub mod autoscroll;
@@ -290,7 +313,7 @@ impl Default for UiState {
             show_discord: true,
             author: String::new(),
             window: None,
-            language: i18n::AUTO.into(),
+            language: i18n::DEFAULT_LANGUAGE.into(),
             editing: wordcraft_engine::Prefs::default(),
             read_aloud_rate: 1.0,
             read_aloud_skip_citations: true,
@@ -1068,15 +1091,22 @@ impl WordApp {
             "ui.dark" => {
                 // A manual Light/Dark switch (toggles what is shown when no value is given).
                 let dark = p.get("value").and_then(Value::as_bool).unwrap_or(!self.ui_is_dark());
-                self.ui.theme = if dark { theme::Appearance::Dark } else { theme::Appearance::Light };
+                // Within the Suíte FisiLab palette, the switch moves between UFRGS Noite and Dia.
+                self.ui.theme = match (self.ui.theme.is_ufrgs(), dark) {
+                    (true, true) => theme::Appearance::UfrgsNoite,
+                    (true, false) => theme::Appearance::UfrgsDia,
+                    (false, true) => theme::Appearance::Dark,
+                    (false, false) => theme::Appearance::Light,
+                };
                 json!({"dark": dark, "theme": self.ui.theme.code()})
             }
             "ui.theme" => {
-                // `light`, `dark` or `system` (follow the OS appearance); no value reads it.
+                // `ufrgsNoite`, `ufrgsDia`, `light`, `dark` or `system` (follow the OS appearance);
+                // no value reads it.
                 if let Some(v) = s("value") {
                     match theme::Appearance::from_code(v) {
                         Some(a) => self.ui.theme = a,
-                        None => return Some(Err(format!("unknown theme {v:?}; use light, dark or system"))),
+                        None => return Some(Err(format!("unknown theme {v:?}; use ufrgsNoite, ufrgsDia, light, dark or system"))),
                     }
                 }
                 json!({"theme": self.ui.theme.code(), "dark": self.ui_is_dark()})
@@ -1167,13 +1197,22 @@ impl WordApp {
             // MCP get an error.
             "ui.makeDefaultApp" => {
                 return Some(Err(
-                    "making WordCraft the default app needs a click in File › Options › General; scripts and agents can't change system defaults"
+                    "making FisiTexto the default app needs a click in File › Options › General; scripts and agents can't change system defaults"
                         .into(),
                 ));
             }
-            "ui.discord" => {
-                self.canvas.open_url = Some("https://discord.gg/artcraft".into());
-                json!({})
+            // Suíte FisiLab: its About window (Help › Sobre a Suíte FisiLab…, the title bar's
+            // FisiLab button) and its links.
+            "ui.fisilab" => {
+                if let Some(ctx) = &self.ctx {
+                    fisilab_brand::about::open(ctx);
+                }
+                json!({"opened": self.ctx.is_some()})
+            }
+            "ui.fisilabSite" | "ui.manifesto" | "ui.upstream" | "ui.reportIssue" => {
+                let url = FISILAB_LINKS.iter().find(|(cmd, ..)| *cmd == id).map_or(REPORT_ISSUE_URL, |(_, _, url)| *url);
+                self.canvas.open_url = Some(url.into());
+                json!({"url": url})
             }
             "ui.caretAnimation" => {
                 // File › Options › Advanced › Animation: `value` true or false turns the caret's
@@ -1219,20 +1258,20 @@ impl WordApp {
     /// command, so nothing programmatic (control channel, MCP, macros) can change system defaults.
     pub(crate) fn make_default_app(&mut self) -> Result<Value, String> {
         let Some(hook) = self.services.make_default_app.as_ref() else {
-            return Err("WordCraft can't change the default apps here; use your system's settings".into());
+            return Err("FisiTexto can't change the default apps here; use your system's settings".into());
         };
         match hook() {
             Ok(DefaultApp::SettingsOpened) => {
-                self.status(tl!("In Default apps, choose WordCraft for the document types you want it to open."));
+                self.status(tl!("In Default apps, choose FisiTexto for the document types you want it to open."));
                 Ok(json!({"settingsOpened": true}))
             }
             Ok(DefaultApp::MadeDefault) => {
-                self.status(tl!("WordCraft is now the default app for Word documents."));
+                self.status(tl!("FisiTexto is now the default app for Word documents."));
                 Ok(json!({"default": true}))
             }
             Err(e) => {
                 log::warn!("make default app: {e}");
-                let msg = i18n::fmt(tl!("Couldn't make WordCraft the default: {error}"), &[("error", &e)]);
+                let msg = i18n::fmt(tl!("Couldn't make FisiTexto the default: {error}"), &[("error", &e)]);
                 self.status(msg.clone());
                 Err(msg)
             }
@@ -1610,10 +1649,12 @@ impl WordApp {
         if let Some(url) = self.canvas.open_url.take() {
             ctx.open_url(egui::OpenUrl::new_tab(url));
         }
+        // Suíte FisiLab: the About window and, at start-up, the splash screen, on top of everything.
+        fisilab_brand::frame(&ctx, &APP_INFO);
         let title = if self.has_document() {
-            format!("{}{} - WordCraft", self.title_stem(), if self.session.dirty { " •" } else { "" })
+            format!("{}{} - FisiTexto", self.title_stem(), if self.session.dirty { " •" } else { "" })
         } else {
-            "WordCraft".to_string()
+            "FisiTexto".to_string()
         };
         if title != self.sent_title {
             ctx.send_viewport_cmd(egui::ViewportCommand::Title(title.clone()));
@@ -1908,7 +1949,11 @@ pub(crate) fn works_without_document(id: &str) -> bool {
             | "ui.openFileDialog"
             | "ui.fileBrowser"
             | "ui.makeDefaultApp"
-            | "ui.discord"
+            | "ui.fisilab"
+            | "ui.fisilabSite"
+            | "ui.manifesto"
+            | "ui.upstream"
+            | "ui.reportIssue"
             | "ui.caretAnimation"
             | "ui.startScreen"
     ) || id.starts_with("help.")
@@ -2090,12 +2135,12 @@ mod tests {
         let a = h.state_mut();
         assert!(!a.ui.backstage, "Esc leaves the Start screen");
         assert!(!a.has_document(), "for an empty window, not a blank document");
-        assert_eq!(a.sent_title, "WordCraft", "the window is titled with the app alone");
+        assert_eq!(a.sent_title, "FisiTexto", "the window is titled with the app alone");
         // The ribbon's commands are off, but Help, the File tab and the settings work.
         for id in ["format.bold", "text.insert", "file.save", "file.saveAs", "file.print", "edit.paste", "insert.table", "ui.print"] {
             assert!(!widgets::enabled(a, id), "{id} is off with no document");
         }
-        for id in ["file.new", "file.open", "ui.backstage", "ui.tab", "ui.discord", "file.options", "ui.theme"] {
+        for id in ["file.new", "file.open", "ui.backstage", "ui.tab", "ui.fisilab", "ui.reportIssue", "file.options", "ui.theme"] {
             assert!(widgets::enabled(a, id), "{id} works with no document");
         }
         assert!(!chrome::qat_enabled(a, "file.save"));
@@ -3290,7 +3335,7 @@ mod tests {
     #[test]
     fn the_default_app_button_shows_only_with_the_hosts_hook() {
         use egui_kittest::kittest::Queryable;
-        const LABEL: &str = "Make WordCraft the default for Word documents…";
+        const LABEL: &str = "Make FisiTexto the default for Word documents…";
         for hook in [false, true] {
             let calls = std::rc::Rc::new(std::cell::Cell::new(0));
             let mut a = app();
@@ -3311,7 +3356,7 @@ mod tests {
                 a,
             );
             h.run_steps(4);
-            assert!(h.query_by_label("Show the community button in the title bar").is_some(), "hook {hook}: the Options page rendered");
+            assert!(h.query_by_label("Mostrar o botão da Suíte FisiLab na barra de título").is_some(), "hook {hook}: the Options page rendered");
             assert_eq!(h.query_by_label(LABEL).is_some(), hook, "hook {hook}: the button");
             if hook {
                 h.get_by_label(LABEL).click();
@@ -4119,11 +4164,11 @@ mod tests {
     }
 
     /// #115: the old dark-mode switch migrates to Light/Dark; a saved System stays System, and the
-    /// old key is never written back.
+    /// old key is never written back. Suíte FisiLab: a fresh install starts on UFRGS Noite.
     #[test]
     fn interface_theme_migrates_and_survives_a_restart() {
         use theme::Appearance;
-        for (saved, want) in [(r#"{"dark": false}"#, Appearance::Light), (r#"{"dark": true}"#, Appearance::Dark), ("{}", Appearance::Light)] {
+        for (saved, want) in [(r#"{"dark": false}"#, Appearance::Light), (r#"{"dark": true}"#, Appearance::Dark), ("{}", Appearance::UfrgsNoite)] {
             let mut a = app();
             a.apply_prefs(serde_json::from_str(saved).unwrap());
             assert_eq!(a.ui.theme, want, "{saved}");
@@ -4137,7 +4182,16 @@ mod tests {
         assert_eq!(b.ui.theme, Appearance::System);
         // An unknown saved value keeps the rest of the preferences.
         let odd: UiState = serde_json::from_str(r#"{"theme": "sepia", "tab": "Insert"}"#).unwrap();
-        assert_eq!((odd.theme, odd.tab.as_str()), (Appearance::Light, "Insert"));
+        assert_eq!((odd.theme, odd.tab.as_str()), (Appearance::UfrgsNoite, "Insert"));
+        assert_eq!(UiState::default().theme, Appearance::UfrgsNoite, "UFRGS Noite is the default");
+        // The UFRGS themes are kept between runs too.
+        let mut c = app();
+        c.run("ui.theme", json!({"value": "ufrgsDia"})).unwrap();
+        let saved = serde_json::to_string(&c.prefs()).unwrap();
+        assert!(saved.contains(r#""theme":"ufrgsDia""#), "{saved}");
+        let mut d = app();
+        d.apply_prefs(serde_json::from_str(&saved).unwrap());
+        assert_eq!(d.ui.theme, Appearance::UfrgsDia);
     }
 
     /// #475, #822: the interface size is kept between runs; junk saved values read as Auto and
@@ -4282,6 +4336,34 @@ mod tests {
         assert_eq!(a.run("ui.theme", json!({"value": "dark"})).unwrap()["theme"], "dark");
         assert_eq!(a.run("ui.dark", json!({})).unwrap()["theme"], "light", "ui.dark toggles the manual choice");
         assert_eq!(a.run("ui.theme", json!({})).unwrap()["theme"], "light");
+        // Suíte FisiLab: the switch stays within UFRGS Noite and Dia.
+        assert_eq!(a.run("ui.theme", json!({"value": "ufrgsNoite"})).unwrap()["theme"], "ufrgsNoite");
+        assert_eq!(a.run("ui.dark", json!({})).unwrap()["theme"], "ufrgsDia");
+        assert_eq!(a.run("ui.dark", json!({"value": true})).unwrap()["theme"], "ufrgsNoite");
+        for (setting, os, dark) in [(Appearance::UfrgsNoite, Some(Light), true), (Appearance::UfrgsDia, Some(Dark), false)] {
+            assert_eq!(setting.is_dark(os), dark, "{setting:?} with the OS at {os:?}");
+        }
+    }
+
+    /// Suíte FisiLab: Help › Sobre a Suíte FisiLab… opens the suite's About window, and the
+    /// suite's links open the suite's site, the manifesto, the upstream project and the issues.
+    #[test]
+    fn fisilab_help_commands() {
+        let ctx = egui::Context::default();
+        let mut a = app();
+        let _ = theme_frame(&ctx, &mut a, None);
+        assert!(!fisilab_brand::about::is_open(&ctx));
+        assert_eq!(a.run("ui.fisilab", json!({})).unwrap()["opened"], true);
+        assert!(fisilab_brand::about::is_open(&ctx));
+        for (id, _, url) in FISILAB_LINKS {
+            assert_eq!(a.run(id, json!({})).unwrap()["url"], url, "{id}");
+            assert_eq!(a.canvas.open_url.take().as_deref(), Some(url), "{id}");
+            assert!(works_without_document(id), "{id}");
+        }
+        assert!(FISILAB_LINKS.iter().all(|(_, _, url)| url.starts_with("https://github.com/")));
+        assert_eq!(APP_INFO.name, "FisiTexto");
+        // A fresh install's interface language (pt-br outside tests) has a catalog.
+        assert!(i18n::Lang::from_code("pt-br").is_some() && i18n::normalize_pref(i18n::DEFAULT_LANGUAGE).is_some());
     }
 
     /// One app frame with the OS appearance egui reports; returns the window commands it sent.
