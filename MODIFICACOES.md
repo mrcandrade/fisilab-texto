@@ -28,13 +28,11 @@ Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
   desliga) e a janela **"Sobre a Suíte FisiLab"** com créditos, manifesto e logos da UFRGS e do CTA.
 - Ícone novo do aplicativo (`assets/fisilab/fisilab-texto*.png`, `fisilab-texto.ico`) na janela, na barra
   de tarefas e no executável.
-- Temas **UFRGS Noite** (escuro, agora o padrão) e **UFRGS Dia** (claro), montados a partir das cores
-  da marca (`fisilab_brand::palette`), sem mudar o layout. Os temas originais (Claro, Escuro e
-  "Usar configuração do sistema") continuam disponíveis em Exibir › Tema da interface e em
-  Arquivo › Opções. Foram acrescentados aos tokens do tema `accent_hover` (fundo dos botões de
-  destaque sob o ponteiro) e `link` (cor dos links), para manter o contraste mínimo de 4,5:1.
-  O comando `ui.theme` aceita `ufrgsNoite` e `ufrgsDia`; `ui.dark` alterna entre Noite e Dia quando
-  um tema UFRGS está ativo.
+- Paleta original do WordCraft, sem cores da marca nos temas. O tema escuro original aparece como
+  **Noite** e o claro original (o padrão, como no WordCraft) como **Dia**; os dois vêm primeiro em
+  Exibir › Tema da interface e em Arquivo › Opções, seguidos de "Usar configuração do sistema".
+  O comando `ui.theme` aceita `noite`/`night` e `dia`/`day`, além de `dark`, `light` e `system`.
+  Foram acrescentados aos tokens do tema `accent_hover` e `link`, com os mesmos valores originais.
 
 ### Ajuda, links e comunidade
 - Guia **Ajuda**: o botão "Community Discord" foi trocado por **"Sobre a Suíte FisiLab"**, e um novo
@@ -57,7 +55,7 @@ Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
   ser desligado; os links que abriam páginas da ArtCraft foram redirecionados (acima).
 
 ### Idioma
-- Uma instalação nova abre em **português do Brasil** (`language = "pt-br"` por padrão); a escolha
+- Uma instalação nova abre em **português do Brasil** (o aplicativo desktop define `pt-br` só quando ainda não há `ui.json`; o padrão da biblioteca é o original, "automático"); a escolha
   em Arquivo › Opções (incluindo "automático") continua funcionando e é guardada. Com a interface em
   português, documentos novos são escritos em pt-BR.
 

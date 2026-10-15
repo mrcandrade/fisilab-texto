@@ -313,7 +313,7 @@ impl Default for UiState {
             show_discord: true,
             author: String::new(),
             window: None,
-            language: i18n::DEFAULT_LANGUAGE.into(),
+            language: i18n::AUTO.into(),
             editing: wordcraft_engine::Prefs::default(),
             read_aloud_rate: 1.0,
             read_aloud_skip_citations: true,
@@ -1091,22 +1091,16 @@ impl WordApp {
             "ui.dark" => {
                 // A manual Light/Dark switch (toggles what is shown when no value is given).
                 let dark = p.get("value").and_then(Value::as_bool).unwrap_or(!self.ui_is_dark());
-                // Within the Suíte FisiLab palette, the switch moves between UFRGS Noite and Dia.
-                self.ui.theme = match (self.ui.theme.is_ufrgs(), dark) {
-                    (true, true) => theme::Appearance::UfrgsNoite,
-                    (true, false) => theme::Appearance::UfrgsDia,
-                    (false, true) => theme::Appearance::Dark,
-                    (false, false) => theme::Appearance::Light,
-                };
+                self.ui.theme = if dark { theme::Appearance::Dark } else { theme::Appearance::Light };
                 json!({"dark": dark, "theme": self.ui.theme.code()})
             }
             "ui.theme" => {
-                // `ufrgsNoite`, `ufrgsDia`, `light`, `dark` or `system` (follow the OS appearance);
-                // no value reads it.
+                // `light` ("Dia"), `dark` ("Noite") or `system` (follow the OS appearance); `dia`,
+                // `noite`, `day` and `night` are accepted too; no value reads it.
                 if let Some(v) = s("value") {
                     match theme::Appearance::from_code(v) {
                         Some(a) => self.ui.theme = a,
-                        None => return Some(Err(format!("unknown theme {v:?}; use ufrgsNoite, ufrgsDia, light, dark or system"))),
+                        None => return Some(Err(format!("unknown theme {v:?}; use light, dark or system (or dia, noite)"))),
                     }
                 }
                 json!({"theme": self.ui.theme.code(), "dark": self.ui_is_dark()})
@@ -4164,11 +4158,11 @@ mod tests {
     }
 
     /// #115: the old dark-mode switch migrates to Light/Dark; a saved System stays System, and the
-    /// old key is never written back. Suíte FisiLab: a fresh install starts on UFRGS Noite.
+    /// old key is never written back.
     #[test]
     fn interface_theme_migrates_and_survives_a_restart() {
         use theme::Appearance;
-        for (saved, want) in [(r#"{"dark": false}"#, Appearance::Light), (r#"{"dark": true}"#, Appearance::Dark), ("{}", Appearance::UfrgsNoite)] {
+        for (saved, want) in [(r#"{"dark": false}"#, Appearance::Light), (r#"{"dark": true}"#, Appearance::Dark), ("{}", Appearance::Light)] {
             let mut a = app();
             a.apply_prefs(serde_json::from_str(saved).unwrap());
             assert_eq!(a.ui.theme, want, "{saved}");
@@ -4182,16 +4176,16 @@ mod tests {
         assert_eq!(b.ui.theme, Appearance::System);
         // An unknown saved value keeps the rest of the preferences.
         let odd: UiState = serde_json::from_str(r#"{"theme": "sepia", "tab": "Insert"}"#).unwrap();
-        assert_eq!((odd.theme, odd.tab.as_str()), (Appearance::UfrgsNoite, "Insert"));
-        assert_eq!(UiState::default().theme, Appearance::UfrgsNoite, "UFRGS Noite is the default");
-        // The UFRGS themes are kept between runs too.
+        assert_eq!((odd.theme, odd.tab.as_str()), (Appearance::Light, "Insert"));
+        // "Noite" and "Dia" are the upstream Dark and Light themes, kept between runs too.
         let mut c = app();
-        c.run("ui.theme", json!({"value": "ufrgsDia"})).unwrap();
+        c.run("ui.theme", json!({"value": "noite"})).unwrap();
         let saved = serde_json::to_string(&c.prefs()).unwrap();
-        assert!(saved.contains(r#""theme":"ufrgsDia""#), "{saved}");
+        assert!(saved.contains(r#""theme":"dark""#), "{saved}");
         let mut d = app();
         d.apply_prefs(serde_json::from_str(&saved).unwrap());
-        assert_eq!(d.ui.theme, Appearance::UfrgsDia);
+        assert_eq!(d.ui.theme, Appearance::Dark);
+        assert_eq!(UiState::default().theme, Appearance::Light, "the upstream default");
     }
 
     /// #475, #822: the interface size is kept between runs; junk saved values read as Auto and
@@ -4336,13 +4330,8 @@ mod tests {
         assert_eq!(a.run("ui.theme", json!({"value": "dark"})).unwrap()["theme"], "dark");
         assert_eq!(a.run("ui.dark", json!({})).unwrap()["theme"], "light", "ui.dark toggles the manual choice");
         assert_eq!(a.run("ui.theme", json!({})).unwrap()["theme"], "light");
-        // Suíte FisiLab: the switch stays within UFRGS Noite and Dia.
-        assert_eq!(a.run("ui.theme", json!({"value": "ufrgsNoite"})).unwrap()["theme"], "ufrgsNoite");
-        assert_eq!(a.run("ui.dark", json!({})).unwrap()["theme"], "ufrgsDia");
-        assert_eq!(a.run("ui.dark", json!({"value": true})).unwrap()["theme"], "ufrgsNoite");
-        for (setting, os, dark) in [(Appearance::UfrgsNoite, Some(Light), true), (Appearance::UfrgsDia, Some(Dark), false)] {
-            assert_eq!(setting.is_dark(os), dark, "{setting:?} with the OS at {os:?}");
-        }
+        assert_eq!(a.run("ui.theme", json!({"value": "noite"})).unwrap()["theme"], "dark");
+        assert_eq!(a.run("ui.theme", json!({"value": "Day"})).unwrap()["theme"], "light");
     }
 
     /// Suíte FisiLab: Help › Sobre a Suíte FisiLab… opens the suite's About window, and the
@@ -4362,8 +4351,8 @@ mod tests {
         }
         assert!(FISILAB_LINKS.iter().all(|(_, _, url)| url.starts_with("https://github.com/")));
         assert_eq!(APP_INFO.name, "Texto");
-        // A fresh install's interface language (pt-br outside tests) has a catalog.
-        assert!(i18n::Lang::from_code("pt-br").is_some() && i18n::normalize_pref(i18n::DEFAULT_LANGUAGE).is_some());
+        // The desktop app starts a fresh install in pt-br: that language has a catalog.
+        assert!(i18n::Lang::from_code("pt-br").is_some() && i18n::normalize_pref("pt-br").is_some());
     }
 
     /// One app frame with the OS appearance egui reports; returns the window commands it sent.

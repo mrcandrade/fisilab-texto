@@ -35,9 +35,9 @@
 - **Automação:** cada ação é um comando, disponível pela linha de comando (`fisilab-texto-cli`), por
   um canal de controle JSON e por um servidor MCP para agentes de IA.
 
-A interface abre em português do Brasil e pode ser trocada em Arquivo › Opções. Os temas
-**UFRGS Noite** (padrão) e **UFRGS Dia** usam as cores da Suíte FisiLab; os temas originais
-continuam disponíveis.
+A interface abre em português do Brasil na primeira execução e pode ser trocada em Arquivo ›
+Opções. As cores são as originais do WordCraft, com as opções de tema **Noite** (escuro) e **Dia**
+(claro, o padrão).
 
 ## Instalação
 

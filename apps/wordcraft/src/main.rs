@@ -154,12 +154,20 @@ fn load_prefs(app: &mut WordApp) {
     if !prefs_enabled() {
         return;
     }
-    if let Some(p) = prefs_path()
-        && let Ok(bytes) = std::fs::read(&p)
-        && let Some(ui) = UiState::from_json(&bytes)
-    {
+    let saved = prefs_path().and_then(|p| std::fs::read(p).ok());
+    if let Some(ui) = saved.as_deref().and_then(UiState::from_json) {
         app.apply_prefs(ui);
     }
+    if let Some(lang) = fresh_install_language(saved.is_some()) {
+        app.ui.language = lang.into();
+    }
+}
+
+/// Suíte FisiLab: a fresh install (no saved `ui.json` yet) starts in Brazilian Portuguese; File ›
+/// Options still offers every language, and a saved choice is kept. The library's own default
+/// stays the upstream one (follow the system).
+fn fresh_install_language(has_saved_settings: bool) -> Option<&'static str> {
+    (!has_saved_settings).then_some("pt-br")
 }
 
 /// Fonts the user added (#582) live in `fonts` in the settings folder: load them, and store fonts
@@ -360,4 +368,15 @@ fn main() -> eframe::Result {
             )))
         }),
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::fresh_install_language;
+
+    #[test]
+    fn a_fresh_install_starts_in_portuguese() {
+        assert_eq!(fresh_install_language(false), Some("pt-br"));
+        assert_eq!(fresh_install_language(true), None, "a saved language is kept");
+    }
 }
