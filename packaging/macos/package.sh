@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Build, sign and (optionally) notarize the macOS release artifacts:
 #
-#   $DIST/wordcraft-<version>-macos-<arch>.dmg          WordCraft.app on a drag-to-Applications DMG
-#   $DIST/wordcraft-cli-<version>-macos-<arch>.zip      the headless CLI
+#   $DIST/FisiLab-Texto-<version>-macOS.dmg             Texto.app on a drag-to-Applications DMG (--arch universal;
+#                                                       FisiLab-Texto-<version>-macOS-<arch>.dmg for a single arch)
+#   $DIST/fisilab-texto-cli-<version>-macos-<arch>.zip  the headless CLI
 #
 # Usage: packaging/macos/package.sh [--arch universal|aarch64|x86_64] [--skip-build]
 #
@@ -23,7 +24,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --arch) ARCH="$2"; shift 2 ;;
     --skip-build) SKIP_BUILD=1; shift ;;
-    -h | --help) sed -n '2,16p' "$0"; exit 0 ;;
+    -h | --help) sed -n '2,17p' "$0"; exit 0 ;;
     *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
@@ -39,9 +40,13 @@ export MACOSX_DEPLOYMENT_TARGET=11.0
 IDENTITY="${MACOS_SIGN_IDENTITY:--}"
 SHORT_VERSION="${VERSION%%-*}"
 WORK="$CARGO_TARGET_DIR/macos-package"
-APP="$WORK/WordCraft.app"
-DMG="$DIST/wordcraft-$VERSION-macos-$ARCH.dmg"
-CLI_ZIP="$DIST/wordcraft-cli-$VERSION-macos-$ARCH.zip"
+APP="$WORK/Texto.app"
+if [ "$ARCH" = universal ]; then
+  DMG="$DIST/FisiLab-Texto-$VERSION-macOS.dmg"
+else
+  DMG="$DIST/FisiLab-Texto-$VERSION-macOS-$ARCH.dmg"
+fi
+CLI_ZIP="$DIST/fisilab-texto-cli-$VERSION-macos-$ARCH.zip"
 
 NOTARIZE=0
 if [ "$IDENTITY" = "-" ]; then
@@ -52,7 +57,7 @@ else
   warn "macOS: APPLE_ID / APPLE_PASSWORD / APPLE_TEAM_ID incomplete; signed but not notarized"
 fi
 
-echo "==> WordCraft $VERSION for macOS ($ARCH), identity: $IDENTITY, notarize: $NOTARIZE"
+echo "==> Texto $VERSION for macOS ($ARCH), identity: $IDENTITY, notarize: $NOTARIZE"
 
 # ---- build -------------------------------------------------------------------------------------
 if [ "$SKIP_BUILD" = 0 ]; then
@@ -63,7 +68,7 @@ fi
 
 rm -rf "$WORK"
 mkdir -p "$WORK/bin"
-for bin in wordcraft wordcraft-cli; do
+for bin in fisilab-texto fisilab-texto-cli; do
   inputs=()
   for t in "${TARGETS[@]}"; do inputs+=("$CARGO_TARGET_DIR/$t/release/$bin"); done
   lipo -create -output "$WORK/bin/$bin" "${inputs[@]}"
@@ -97,14 +102,15 @@ notarize() {
   fi
 }
 
-# ---- WordCraft.app ----------------------------------------------------------------------------
+# ---- Texto.app ----------------------------------------------------------------------------
 echo "==> assembling $APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # Executable and icon carry the display name (CFBundleExecutable / CFBundleIconFile).
-cp "$WORK/bin/wordcraft" "$APP/Contents/MacOS/WordCraft"
-cp "$ROOT/assets/app-icon/wordcraft.icns" "$APP/Contents/Resources/WordCraft.icns"
-# Licences of the embedded craft-fonts fonts (only when built with CRAFT_FONTS_DIR).
-copy_font_licences "$APP/Contents/Resources"
+cp "$WORK/bin/fisilab-texto" "$APP/Contents/MacOS/Texto"
+cp "$ROOT/assets/fisilab/fisilab-texto.icns" "$APP/Contents/Resources/Texto.icns"
+# Licences, NOTICE, ATTRIBUTION, MODIFICACOES.md and the licences of the embedded craft-fonts fonts
+# (the latter only when built with CRAFT_FONTS_DIR).
+copy_docs "$APP/Contents/Resources"
 sed -e "s/@VERSION@/$VERSION/g" -e "s/@SHORT_VERSION@/$SHORT_VERSION/g" \
   -e "s/@BUILD_SHA@/${WORDCRAFT_BUILD_SHA:-unknown}/g" \
   "$HERE/Info.plist.in" >"$APP/Contents/Info.plist"
@@ -113,13 +119,13 @@ printf 'APPL????' >"$APP/Contents/PkgInfo"
 
 # Sign inside-out: nested code first, then the bundle itself (no --deep on the final signature).
 # Today the only nested code is the main executable; frameworks/helpers would be signed here too.
-sign --options runtime --entitlements "$HERE/entitlements.plist" "$APP/Contents/MacOS/WordCraft"
+sign --options runtime --entitlements "$HERE/entitlements.plist" "$APP/Contents/MacOS/Texto"
 sign --options runtime --entitlements "$HERE/entitlements.plist" "$APP"
 codesign --verify --strict --deep --verbose=2 "$APP"
 
 if [ "$NOTARIZE" = 1 ]; then
-  ditto -c -k --keepParent "$APP" "$WORK/WordCraft-notarize.zip"
-  notarize "$WORK/WordCraft-notarize.zip"
+  ditto -c -k --keepParent "$APP" "$WORK/Texto-notarize.zip"
+  notarize "$WORK/Texto-notarize.zip"
   xcrun stapler staple "$APP"
   xcrun stapler validate "$APP"
   spctl --assess --type execute -vvv "$APP"
@@ -129,8 +135,8 @@ fi
 echo "==> building $DMG"
 STAGE="$WORK/dmg"
 mkdir -p "$STAGE"
-ditto "$APP" "$STAGE/WordCraft.app"
-ln -s /Applications "$STAGE/Applications"
+ditto "$APP" "$STAGE/Texto.app"
+ln -s /Applications "$STAGE/Aplicativos"
 # Finder window layout: background, icon size and positions (packaging/macos/dmg/README.md).
 mkdir -p "$STAGE/.background"
 cp "$HERE/dmg/background.tiff" "$STAGE/.background/background.tiff"
@@ -139,7 +145,7 @@ rm -f "$DMG" "$WORK/raw.dmg"
 # makehybrid + convert builds the image without attaching a device, unlike `create -srcfolder`,
 # which is flaky on CI runners ("Resource busy") and hangs in sandboxed sessions.
 # The volume name has no version: .DS_Store finds the background through an alias that includes it.
-hdiutil makehybrid -hfs -hfs-volume-name "WordCraft" -hfs-openfolder "$STAGE" -o "$WORK/raw.dmg" "$STAGE"
+hdiutil makehybrid -hfs -hfs-volume-name "Texto" -hfs-openfolder "$STAGE" -o "$WORK/raw.dmg" "$STAGE"
 hdiutil convert "$WORK/raw.dmg" -format UDZO -imagekey zlib-level=9 -o "$DMG"
 rm -f "$WORK/raw.dmg"
 sign "$DMG"
@@ -153,17 +159,17 @@ fi
 
 # ---- CLI ---------------------------------------------------------------------------------------
 echo "==> building $CLI_ZIP"
-CLI_DIR="$WORK/wordcraft-cli-$VERSION-macos-$ARCH"
+CLI_DIR="$WORK/fisilab-texto-cli-$VERSION-macos-$ARCH"
 mkdir -p "$CLI_DIR"
-cp "$WORK/bin/wordcraft-cli" "$CLI_DIR/"
+cp "$WORK/bin/fisilab-texto-cli" "$CLI_DIR/"
 copy_docs "$CLI_DIR"
-sign --options runtime "$CLI_DIR/wordcraft-cli"
-codesign --verify --strict --verbose=2 "$CLI_DIR/wordcraft-cli"
+sign --options runtime "$CLI_DIR/fisilab-texto-cli"
+codesign --verify --strict --verbose=2 "$CLI_DIR/fisilab-texto-cli"
 rm -f "$CLI_ZIP"
 ditto -c -k --norsrc --noextattr --keepParent "$CLI_DIR" "$CLI_ZIP"
 # A bare Mach-O can't carry a stapled ticket; Gatekeeper looks the notarization up online.
 if [ "$NOTARIZE" = 1 ]; then notarize "$CLI_ZIP"; fi
 
-"$WORK/bin/wordcraft-cli" --version
+"$WORK/bin/fisilab-texto-cli" --version
 echo "==> done"
 ls -lh "$DMG" "$CLI_ZIP"

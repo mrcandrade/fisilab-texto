@@ -51,6 +51,10 @@ Baixe o instalador `FisiLab-Texto-Setup-<versão>.exe` na [página de downloads 
 
 Baixe o `FisiLab-Texto-<versão>-x86_64.AppImage` na [página de downloads da Suíte FisiLab](https://github.com/mrcandrade/larfic/releases/latest), marque-o como executável (`chmod +x` ou Propriedades › Permitir executar) e abra-o. No Ubuntu/Debian também é possível instalar o `fisilab-texto_<versão>_amd64.deb` com `sudo apt install ./fisilab-texto_<versão>_amd64.deb`. Requer Ubuntu 22.04 ou mais recente (ou equivalente).
 
+### macOS
+
+macOS 11 ou mais novo (Intel ou Apple Silicon). Baixe `FisiLab-Texto-<versão>-macOS.dmg` na [página de downloads da Suíte FisiLab](https://github.com/mrcandrade/larfic/releases/latest), abra-o e arraste o Texto para a pasta Aplicativos. Na primeira vez o macOS avisa que não pode verificar o desenvolvedor (o programa ainda não tem assinatura paga da Apple): abra **Ajustes do Sistema › Privacidade e Segurança** e clique em **Abrir Mesmo Assim** (no macOS 14 ou anterior também funciona clicar com o botão direito no app › **Abrir**).
+
 ### Compilar a partir do código
 
 É preciso ter o [Rust](https://www.rust-lang.org/pt-BR/tools/install) instalado.

@@ -85,6 +85,11 @@ Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
   `FisiLab-Texto-<versão>-x86_64.AppImage`, `fisilab-texto_<versão>_amd64.deb`, binários
   `fisilab-texto` e `fisilab-texto-cli` e o identificador `br.ufrgs.fisilab.texto`.
 
+### Empacotamento macOS
+
+- O empacotamento para macOS (DMG universal, `FisiLab-Texto-<versão>-macOS.dmg`) usa os novos nomes, o
+  ícone `assets/fisilab/fisilab-texto.icns` e o identificador `br.ufrgs.fisilab.texto`.
+
 ### Repositório
 - Removida a pasta `.github/` (fluxos de CI, release e lint do projeto original, que rodariam
   contra este fork).
