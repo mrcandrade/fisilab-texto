@@ -27,7 +27,7 @@
 	A password is required to open this document.	K otevření tohoto dokumentu je vyžadováno heslo.
 	A table of contents	Obsah
 	About	O aplikaci
-	About FisiTexto	O aplikaci FisiTexto
+	About Texto	O aplikaci Texto
 	Accent	Diakritika
 	Accept	Přijmout
 	Accept All Changes	Přijmout všechny změny
@@ -105,7 +105,7 @@
 	Automatic Table 1 (3 levels)	Automatický obsah 1 (3 úrovně)
 	Automatic Table 2 (2 levels)	Automatický obsah 2 (2 úrovně)
 	AutoSave	Automatické ukládání
-	AutoSave documents you have saved in FisiTexto	Automaticky ukládat dokumenty uložené ve FisiTextou
+	AutoSave documents you have saved in FisiLab Texto	Automaticky ukládat dokumenty uložené v aplikaci FisiLab Texto
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Automatické ukládání selhalo: {error}. Uložením dokumentu automatické ukládání znovu zapnete.
 	AutoSave isn't available in the browser: it can't write to your files. Save downloads a copy.	Automatické ukládání není v prohlížeči dostupné, protože nemůže zapisovat do vašich souborů. Příkaz Uložit stáhne kopii.
 	AutoSave only keeps .docx, .odt and .rtf files; {name} can't keep all formatting. Save as .docx to turn on AutoSave.	Automatické ukládání podporuje pouze soubory .docx, .odt a .rtf; formát {name} nedokáže zachovat veškeré formátování. Pro zapnutí automatického ukládání uložte dokument jako .docx.
@@ -388,7 +388,7 @@
 	Erase Ink	Smazat rukopis
 	Eraser	Guma
 	Even Page	Sudá stránka
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Každý příkaz je dostupný skriptům a AI agentům: spusťte `fisitexto-cli mcp` pro server MCP, nebo spusťte aplikaci s parametrem `--control <port>` pro řídicí kanál JSON.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Každý příkaz je dostupný skriptům a AI agentům: spusťte `fisilab-texto-cli mcp` pro server MCP, nebo spusťte aplikaci s parametrem `--control <port>` pro řídicí kanál JSON.
 	Every field needs a name.	Každé pole musí mít název.
 	Exactly	Přesně
 	Exactly {n}	Přesně {n}
@@ -571,7 +571,7 @@
 	Keep Lines Together	Svázat řádky
 	Keep lines together	Svázat řádky
 	Keep Text Only	Zachovat pouze text
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Heslo si bezpečně uložte: bez něj dokument nikdo (včetně aplikace FisiTexto) neotevře. Chcete-li heslo odebrat, ponechte obě pole prázdná.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Heslo si bezpečně uložte: bez něj dokument nikdo (včetně aplikace FisiLab Texto) neotevře. Chcete-li heslo odebrat, ponechte obě pole prázdná.
 	Keep with Next	Svázat s následujícím
 	Keep with next	Svázat s následujícím
 	Keeps the fonts and formatting of the copied text.	Zachová písma a formátování zkopírovaného textu.
@@ -1236,7 +1236,7 @@
 	Word Left	O slovo vlevo
 	Word Right	O slovo vpravo
 	WordArt	WordArt
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Slova
 	Words only	Pouze slova
 	Wrap Text	Obtékání textu
@@ -1912,7 +1912,7 @@
 	Word document	Dokument Word
 	All files	Všechny soubory
 	Recipient lists	Seznamy příjemců
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Systémový dialog pro práci se soubory není k dispozici, proto FisiTexto zobrazuje vlastní. Chcete-li používat systémový dialog, nainstalujte portál pro výběr souborů (například xdg-desktop-portal-gtk) nebo zenity.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Systémový dialog pro práci se soubory není k dispozici, proto FisiLab Texto zobrazuje vlastní. Chcete-li používat systémový dialog, nainstalujte portál pro výběr souborů (například xdg-desktop-portal-gtk) nebo zenity.
 	Up one level	O úroveň výš
 	Home folder	Domovská složka
 	{name} wasn't found.	{name} nebyl nalezen.
@@ -1920,8 +1920,8 @@
 	This folder can't be read: {error}	Tuto složku nelze přečíst: {error}
 	Showing the first {count} items.	Zobrazuje se prvních {count} položek.
 	File name:	Název souboru:
-	Browse in FisiTexto…	Procházet ve FisiTextou…
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Otevřít soubor pomocí vlastního prohlížeče souborů FisiTextou, když se systémový dialog pro práci se soubory nezobrazí.
+	Browse in FisiLab Texto…	Procházet v aplikaci FisiLab Texto…
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Otevřít soubor pomocí vlastního prohlížeče souborů aplikace FisiLab Texto, když se systémový dialog pro práci se soubory nezobrazí.
 	Hide White Space	Skrýt prázdné místo
 	All pages	Všechny stránky
 	Current page	Aktuální stránka
@@ -2049,15 +2049,15 @@
 	Undo 1 Action	Vrátit 1 akci
 	Undo {n} Actions	Vrátit akce: {n}
 	Start-up	Spuštění
-	Show the Start screen when FisiTexto starts	Při spuštění FisiTextou zobrazit úvodní obrazovku
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Zapnuto: FisiTexto se otevře na kartě Soubor › Domů s prázdným dokumentem, šablonami a nedávnými dokumenty. Vypnuto: otevře prázdný dokument.
-	Couldn't make FisiTexto the default: {error}	FisiTexto se nepodařilo nastavit jako výchozí: {error}
-	In Default apps, choose FisiTexto for the document types you want it to open.	Ve Výchozích aplikacích vyberte FisiTexto pro typy dokumentů, které má otevírat.
-	Make FisiTexto the default for Word documents…	Nastavit FisiTexto jako výchozí pro dokumenty Word…
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	Soubory .docx, .doc, .rtf a .odt a šablony Wordu se od teď otevírají ve FisiTextou.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Otevře Nastavení › Výchozí aplikace, kde zvolíte FisiTexto pro .docx a další typy dokumentů.
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Chcete-li dokumenty Word otevírat ve FisiTextou jako výchozí: vyberte jeden ve Finderu, zvolte Soubor › Informace, v části „Otevřít v aplikaci“ vyberte FisiTexto a klikněte na „Změnit vše“.
-	FisiTexto is now the default app for Word documents.	FisiTexto je nyní výchozí aplikací pro dokumenty Word.
+	Show the Start screen when FisiLab Texto starts	Při spuštění aplikace FisiLab Texto zobrazit úvodní obrazovku
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Zapnuto: FisiLab Texto se otevře na kartě Soubor › Domů s prázdným dokumentem, šablonami a nedávnými dokumenty. Vypnuto: otevře prázdný dokument.
+	Couldn't make Texto the default: {error}	Texto se nepodařilo nastavit jako výchozí: {error}
+	In Default apps, choose Texto for the document types you want it to open.	Ve Výchozích aplikacích vyberte Texto pro typy dokumentů, které má otevírat.
+	Make Texto the default for Word documents…	Nastavit Texto jako výchozí pro dokumenty Word…
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	Soubory .docx, .doc, .rtf a .odt a šablony Wordu se od teď otevírají v aplikaci FisiLab Texto.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Otevře Nastavení › Výchozí aplikace, kde zvolíte Texto pro .docx a další typy dokumentů.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Chcete-li dokumenty Word otevírat v aplikaci Texto jako výchozí: vyberte jeden ve Finderu, zvolte Soubor › Informace, v části „Otevřít v aplikaci“ vyberte Texto a klikněte na „Změnit vše“.
+	Texto is now the default app for Word documents.	Texto je nyní výchozí aplikací pro dokumenty Word.
 	Numerals:	Číslice:
 	Numerals	Číslice
 	Hindi	Hindské

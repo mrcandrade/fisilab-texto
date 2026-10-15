@@ -16,7 +16,7 @@
 	1.5 Line Spacing	1,5 Satır Aralığı
 	AaBbCcDd	AaBbCcÇç
 	About	Hakkında
-	About FisiTexto	FisiTexto Hakkında
+	About Texto	Texto Hakkında
 	Accept	Kabul Et
 	Accept All Changes	Tüm Değişiklikleri Kabul Et
 	Accept This Change	Bu Değişikliği Kabul Et
@@ -243,7 +243,7 @@
 	Equation	Denklem
 	Eraser	Silgi
 	Even Page	Çift Sayfa
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Her komut betiklere ve AI ajanlarına açıktır: MCP sunucusu için `fisitexto-cli mcp` çalıştırın veya JSON denetim kanalı için uygulamayı `--control <port>` ile başlatın.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Her komut betiklere ve AI ajanlarına açıktır: MCP sunucusu için `fisilab-texto-cli mcp` çalıştırın veya JSON denetim kanalı için uygulamayı `--control <port>` ile başlatın.
 	Export	Dışa Aktar
 	Export a copy to share (PDF, Word document)	Paylaşmak için bir kopya dışa aktarın (PDF, Word belgesi)
 	Export Page as PNG	Sayfayı PNG Olarak Dışa Aktar
@@ -822,7 +822,7 @@ preview	Title	Örnek
 	Word Left	Önceki Sözcük
 	Word Right	Sonraki Sözcük
 	WordArt	WordArt
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Sözcükler
 	Words only	Yalnızca sözcükler
 	Wrap Text	Metni Kaydır
@@ -840,7 +840,7 @@ preview	Title	Örnek
 	Only web (http, https) and email (mailto) links can be followed	Yalnızca web (http, https) ve e-posta (mailto) bağlantıları açılabilir
 
 	Apply Styles	Stilleri Uygula
-	AutoSave documents you have saved in FisiTexto	FisiTexto'ta kaydettiğiniz belgeleri otomatik kaydet
+	AutoSave documents you have saved in FisiLab Texto	FisiLab Texto'da kaydettiğiniz belgeleri otomatik kaydet
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Otomatik Kaydet başarısız oldu: {error}. Otomatik Kaydet'i yeniden açmak için belgeyi kaydedin.
 	Bottom Margin	Alt Kenar Boşluğu
 	Edit Comment	Yorumu Düzenle
@@ -1528,7 +1528,7 @@ preview	Title	Örnek
 	The document will be saved with a password. Save it to protect it.	Belge parolayla kaydedilecek. Korumak için belgeyi kaydedin.
 	The password is removed. Save the document to keep the change.	Parola kaldırıldı. Değişikliği korumak için belgeyi kaydedin.
 	The passwords don't match.	Parolalar eşleşmiyor.
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Parolayı güvenli bir yerde saklayın: parola olmadan FisiTexto dahil hiç kimse belgeyi açamaz. Parolayı kaldırmak için iki kutuyu da boş bırakın.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Parolayı güvenli bir yerde saklayın: parola olmadan FisiLab Texto dahil hiç kimse belgeyi açamaz. Parolayı kaldırmak için iki kutuyu da boş bırakın.
 	{cols}×{rows} Table	{cols}×{rows} Tablo
 	Name	Ad
 	PRs	PR'lar
@@ -2009,13 +2009,13 @@ preview	Title	Örnek
 	Hindi	Hintçe
 	Context	Bağlam
 	System	Sistem
-	Couldn't make FisiTexto the default: {error}	FisiTexto varsayılan yapılamadı: {error}
-	In Default apps, choose FisiTexto for the document types you want it to open.	Varsayılan uygulamalar bölümünde, FisiTexto'ın açmasını istediğiniz belge türlerini seçin.
-	Make FisiTexto the default for Word documents…	FisiTexto'ı Word belgeleri için varsayılan yap…
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	Bundan sonra .docx, .doc, .rtf ve .odt dosyalarını ve Word şablonlarını FisiTexto ile açar.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Ayarlar › Varsayılan uygulamalar bölümünü açar; burada .docx ve diğer belge türleri için FisiTexto'ı seçersiniz.
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Word belgelerini varsayılan olarak FisiTexto ile açmak için: Finder'da bir belge seçin, Dosya › Bilgi Al'ı seçin, Birlikte aç altında FisiTexto'ı seçin ve Tümünü Değiştir'e tıklayın.
-	FisiTexto is now the default app for Word documents.	FisiTexto artık Word belgeleri için varsayılan uygulama.
+	Couldn't make Texto the default: {error}	Texto varsayılan yapılamadı: {error}
+	In Default apps, choose Texto for the document types you want it to open.	Varsayılan uygulamalar bölümünde, Texto'nun açmasını istediğiniz belge türlerini seçin.
+	Make Texto the default for Word documents…	Texto'yu Word belgeleri için varsayılan yap…
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	Bundan sonra .docx, .doc, .rtf ve .odt dosyalarını ve Word şablonlarını FisiLab Texto ile açar.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Ayarlar › Varsayılan uygulamalar bölümünü açar; burada .docx ve diğer belge türleri için Texto'yu seçersiniz.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Word belgelerini varsayılan olarak Texto ile açmak için: Finder'da bir belge seçin, Dosya › Bilgi Al'ı seçin, Birlikte aç altında Texto'yu seçin ve Tümünü Değiştir'e tıklayın.
+	Texto is now the default app for Word documents.	Texto artık Word belgeleri için varsayılan uygulama.
 	Templates	Şablonlar
 	Templates and Add-ins	Şablonlar ve Eklentiler
 	Attach Template	Şablonu Ekle
@@ -2166,7 +2166,7 @@ preview	Title	Örnek
 	Word document	Word belgesi
 	All files	Tüm dosyalar
 	Recipient lists	Alıcı listeleri
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Sistemin dosya iletişim kutusu kullanılamadığı için FisiTexto kendi iletişim kutusunu gösteriyor. Sistem iletişim kutusunu kullanmak için bir dosya seçici portalı (örneğin xdg-desktop-portal-gtk) ya da zenity yükleyin.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Sistemin dosya iletişim kutusu kullanılamadığı için FisiLab Texto kendi iletişim kutusunu gösteriyor. Sistem iletişim kutusunu kullanmak için bir dosya seçici portalı (örneğin xdg-desktop-portal-gtk) ya da zenity yükleyin.
 	Up one level	Bir düzey yukarı
 	Home folder	Ana klasör
 	{name} wasn't found.	{name} bulunamadı.
@@ -2174,8 +2174,8 @@ preview	Title	Örnek
 	This folder can't be read: {error}	Bu klasör okunamıyor: {error}
 	Showing the first {count} items.	İlk {count} öğe gösteriliyor.
 	File name:	Dosya adı:
-	Browse in FisiTexto…	FisiTexto'ta Gözat…
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Sistemin dosya iletişim kutusu açılmadığında dosyayı FisiTexto'ın kendi dosya tarayıcısıyla açın.
+	Browse in FisiLab Texto…	FisiLab Texto'da Gözat…
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Sistemin dosya iletişim kutusu açılmadığında dosyayı FisiLab Texto'nun kendi dosya tarayıcısıyla açın.
 	Hide White Space	Boşluğu gizle
 	All pages	Tüm sayfalar
 	Current page	Geçerli sayfa
@@ -2458,8 +2458,8 @@ preview	Title	Örnek
 	Region:	Bölge:
 	Automatic ({region})	Otomatik ({region})
 	Start-up	Başlangıç
-	Show the Start screen when FisiTexto starts	FisiTexto açılırken Başlangıç ekranını göster
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Açık: FisiTexto, Dosya › Giriş sayfasında boş belge, şablonlar ve son belgelerinizle açılır. Kapalı: boş bir belge açar.
+	Show the Start screen when FisiLab Texto starts	FisiLab Texto açılırken Başlangıç ekranını göster
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Açık: FisiLab Texto, Dosya › Giriş sayfasında boş belge, şablonlar ve son belgelerinizle açılır. Kapalı: boş bir belge açar.
 	Typing	Yazma
 	Level 4	Düzey 4
 	Level 5	Düzey 5

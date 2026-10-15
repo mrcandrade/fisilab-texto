@@ -17,7 +17,7 @@
 	1.5 Line Spacing	Proređenost 1,5
 	A password is required to open this document.	Za otvaranje ovog dokumenta potrebna je lozinka.
 	About	O programu
-	About FisiTexto	O FisiTexto-u
+	About Texto	O Texto-u
 	Accept	Prihvati
 	Accept All Changes	Prihvati sve izmene
 	Accept This Change	Prihvati ovu izmenu
@@ -79,7 +79,7 @@
 	Automatic Table 1 (3 levels)	Automatska tabela 1 (3 nivoa)
 	Automatic Table 2 (2 levels)	Automatska tabela 2 (2 nivoa)
 	AutoSave	Automatsko čuvanje
-	AutoSave documents you have saved in FisiTexto	Automatski čuvaj dokumente koje ste već sačuvali u FisiTexto-u
+	AutoSave documents you have saved in FisiLab Texto	Automatski čuvaj dokumente koje ste već sačuvali u FisiLab Texto-u
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Automatsko čuvanje neuspelo: {error}. Sačuvajte dokument da biste ga ponovo uključili.
 	Balloons	Oblačići
 	Bottom Margin	Donja margina
@@ -103,7 +103,7 @@
 	Color: {color}	Boja: {color}
 	Compress punctuation at the start of a line	Sažmi interpunkciju na početku reda
 	Confirm password:	Potvrdite lozinku:
-	Couldn't make FisiTexto the default: {error}	FisiTexto nije mogao da postane podrazumevana aplikacija: {error}
+	Couldn't make Texto the default: {error}	Texto nije mogao da postane podrazumevana aplikacija: {error}
 	Custom dictionary	Prilagođeni rečnik
 	Dark page (white text on black)	Tamna stranica (beo tekst na crnom)
 	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	Prevucite pravougaonik da nacrtate tabelu ili liniju preko ćelija da ih podelite. Esc završava.
@@ -149,10 +149,10 @@
 	Number format	Format broja
 	Number style for this level:	Stil broja za ovaj nivo:
 	Outside border	Spoljna ivica
-	In Default apps, choose FisiTexto for the document types you want it to open.	U podrazumevanim aplikacijama izaberite FisiTexto za vrste dokumenata koje želite da otvara.
-	Make FisiTexto the default for Word documents…	Postavi FisiTexto kao podrazumevanu aplikaciju za Word dokumente…
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	Od sada će se .docx, .doc, .rtf i .odt datoteke i Word šabloni otvarati u FisiTexto-u.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Otvara Podešavanja › Podrazumevane aplikacije, gde birate FisiTexto za .docx i druge vrste dokumenata.
+	In Default apps, choose Texto for the document types you want it to open.	U podrazumevanim aplikacijama izaberite Texto za vrste dokumenata koje želite da otvara.
+	Make Texto the default for Word documents…	Postavi Texto kao podrazumevanu aplikaciju za Word dokumente…
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	Od sada će se .docx, .doc, .rtf i .odt datoteke i Word šabloni otvarati u FisiLab Texto-u.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Otvara Podešavanja › Podrazumevane aplikacije, gde birate Texto za .docx i druge vrste dokumenata.
 	Overtype	Prepisivanje
 	Overtype (typing replaces the characters after the caret)	Prepisivanje (otkucano zamenjuje znakove posle kursora)
 	Page display	Prikaz strane
@@ -178,7 +178,7 @@
 	Glow Colors	Boje sjaja
 	Hide from style lists	Sakrij sa lista stilova
 	Indents and Spacing	Uvlačenja i razmaci
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Čuvajte lozinku na sigurnom mestu: bez nje niko, pa ni FisiTexto, ne može da otvori dokument. Ostavite oba polja prazna da biste uklonili lozinku.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Čuvajte lozinku na sigurnom mestu: bez nje niko, pa ni FisiLab Texto, ne može da otvori dokument. Ostavite oba polja prazna da biste uklonili lozinku.
 	Line breaking	Prelom redova
 	Linked style (paragraph and character)	Povezani stil (pasus i znakovi)
 	Manage Styles	Upravljanje stilovima
@@ -373,8 +373,8 @@
 	Delete Style	Obriši stil
 	Delete Table	Obriši tabelu
 	Design	Dizajn
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Da bi se Word dokumenti podrazumevano otvarali u FisiTexto-u: izaberite jedan u Finder-u, izaberite Datoteka › Prikaži informacije, pod „Otvori pomoću” izaberite FisiTexto, pa kliknite „Promeni sve”.
-	FisiTexto is now the default app for Word documents.	FisiTexto je sada podrazumevana aplikacija za Word dokumente.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Da bi se Word dokumenti podrazumevano otvarali u Texto-u: izaberite jedan u Finder-u, izaberite Datoteka › Prikaži informacije, pod „Otvori pomoću” izaberite Texto, pa kliknite „Promeni sve”.
+	Texto is now the default app for Word documents.	Texto je sada podrazumevana aplikacija za Word dokumente.
 	development build	razvojna verzija
 	Diagonal	Dijagonalno
 	Diamond	Dijamant
@@ -427,7 +427,7 @@
 	Equation	Jednačina
 	Eraser	Gumica
 	Even Page	Parna strana
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Svaka naredba je dostupna skriptama i AI agentima: pokrenite `fisitexto-cli mcp` za MCP server, ili pokrenite aplikaciju sa `--control <port>` za JSON kontrolni kanal.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Svaka naredba je dostupna skriptama i AI agentima: pokrenite `fisilab-texto-cli mcp` za MCP server, ili pokrenite aplikaciju sa `--control <port>` za JSON kontrolni kanal.
 	Export	Izvoz
 	Export a copy to share (PDF, Word document)	Izvezi kopiju za deljenje (PDF, Word dokument)
 	Export Page as PNG	Izvezi stranu kao PNG
@@ -1007,7 +1007,7 @@
 	Word Left	Reč levo
 	Word Right	Reč desno
 	WordArt	WordArt
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Reči
 	Words only	Samo reči
 	Wrap Text	Prelomi tekst
@@ -1733,7 +1733,7 @@
 	Word document	Word dokument
 	All files	Sve datoteke
 	Recipient lists	Liste primalaca
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Sistemski dijalog za datoteke nije dostupan, pa FisiTexto prikazuje svoj. Da biste dobili sistemski dijalog, instalirajte portal za izbor datoteka (na primer xdg-desktop-portal-gtk) ili zenity.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Sistemski dijalog za datoteke nije dostupan, pa FisiLab Texto prikazuje svoj. Da biste dobili sistemski dijalog, instalirajte portal za izbor datoteka (na primer xdg-desktop-portal-gtk) ili zenity.
 	Up one level	Jedan nivo gore
 	Home folder	Lična fascikla
 	{name} wasn't found.	{name} nije pronađen.
@@ -1741,8 +1741,8 @@
 	This folder can't be read: {error}	Ova fascikla ne može da se pročita: {error}
 	Showing the first {count} items.	Prikazane su samo prve stavke: {count}.
 	File name:	Ime datoteke:
-	Browse in FisiTexto…	Potraži u FisiTexto-u…
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Otvorite datoteku pomoću FisiTexto-ovog pregledača kada se sistemski dijalog za datoteke ne pojavi.
+	Browse in FisiLab Texto…	Potraži u FisiLab Texto-u…
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Otvorite datoteku pomoću FisiLab Texto-ovog pregledača kada se sistemski dijalog za datoteke ne pojavi.
 	Hide White Space	Sakrij prazan prostor
 	All pages	Sve stranice
 	Current page	Trenutna stranica
@@ -2077,8 +2077,8 @@
 	Region:	Region:
 	Automatic ({region})	Automatski ({region})
 	Start-up	Pokretanje
-	Show the Start screen when FisiTexto starts	Prikaži početni ekran pri pokretanju programa FisiTexto
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Uključeno: FisiTexto se otvara na Fajl › Početak, sa praznim dokumentom, šablonima i nedavnim dokumentima. Isključeno: otvara prazan dokument.
+	Show the Start screen when FisiLab Texto starts	Prikaži početni ekran pri pokretanju programa FisiLab Texto
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Uključeno: FisiLab Texto se otvara na Fajl › Početak, sa praznim dokumentom, šablonima i nedavnim dokumentima. Isključeno: otvara prazan dokument.
 	Privacy Options	Opcije privatnosti
 	Trust Center	Centar za bezbednost
 	Privacy for this document	Privatnost ovog dokumenta

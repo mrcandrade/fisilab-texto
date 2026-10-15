@@ -2,25 +2,25 @@
 <!-- AppStream metadata (software centres, Flathub). Template: package.sh and the Flatpak
      manifest substitute @VERSION@ and @DATE@ from Cargo.toml and the build date. -->
 <component type="desktop-application">
-  <id>br.ufrgs.fisilab.fisitexto</id>
+  <id>br.ufrgs.fisilab.texto</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT OR Apache-2.0</project_license>
-  <name>FisiTexto</name>
+  <name>Texto</name>
   <summary>Processador de texto da Suíte FisiLab (UFRGS)</summary>
   <developer id="br.ufrgs.fisilab">
     <name>FisiLab — LARFIC/UFRGS</name>
   </developer>
   <description>
     <p>
-      FisiTexto é um processador de texto livre, com faixa de opções familiar: estilos, tabelas, controle de alterações, referências, mala direta e arquivos .docx, PDF, ODT, RTF, HTML e Markdown. Faz parte da Suíte FisiLab, disponibilizada pelo FisiLab — LARFIC · UFRGS em parceria com o CTA — Centro de Tecnologia Acadêmica. Baseado no WordCraft (ArtCraft Team e contribuidores).
+      Texto é um processador de texto livre, com faixa de opções familiar: estilos, tabelas, controle de alterações, referências, mala direta e arquivos .docx, PDF, ODT, RTF, HTML e Markdown. Faz parte da Suíte FisiLab, disponibilizada pelo FisiLab — LARFIC · UFRGS em parceria com o CTA — Centro de Tecnologia Acadêmica. Baseado no WordCraft (ArtCraft Team e contribuidores).
     </p>
   </description>
-  <launchable type="desktop-id">br.ufrgs.fisilab.fisitexto.desktop</launchable>
-  <icon type="stock">br.ufrgs.fisilab.fisitexto</icon>
+  <launchable type="desktop-id">br.ufrgs.fisilab.texto.desktop</launchable>
+  <icon type="stock">br.ufrgs.fisilab.texto</icon>
   <!-- Only url types known to appstream 0.15 (Ubuntu 22.04, where CI validates): no vcs-browser. -->
   <url type="homepage">https://github.com/mrcandrade/larfic/tree/main/suite-fisilab</url>
-  <url type="bugtracker">https://github.com/mrcandrade/fisitexto/issues</url>
-  <url type="help">https://github.com/mrcandrade/fisitexto</url>
+  <url type="bugtracker">https://github.com/mrcandrade/fisilab-texto/issues</url>
+  <url type="help">https://github.com/mrcandrade/fisilab-texto</url>
   <categories>
     <category>Office</category>
     <category>WordProcessor</category>
@@ -34,7 +34,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>The Open Studio Handbook sample with the Navigation pane</caption>
-      <image>https://raw.githubusercontent.com/mrcandrade/fisitexto/main/docs/images/hero.png</image>
+      <image>https://raw.githubusercontent.com/mrcandrade/fisilab-texto/main/docs/images/hero.png</image>
     </screenshot>
   </screenshots>
   <branding>
@@ -51,7 +51,7 @@
   </supports>
   <!-- Document types WordCraft opens (#295), as in the desktop entry's MimeType=. -->
   <provides>
-    <binary>fisitexto</binary>
+    <binary>fisilab-texto</binary>
     <mediatype>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mediatype>
     <mediatype>application/vnd.ms-word.document.macroEnabled.12</mediatype>
     <mediatype>application/vnd.openxmlformats-officedocument.wordprocessingml.template</mediatype>

@@ -52,7 +52,7 @@ pub fn export(doc: &Document) -> String {
 
     let meta = &flow.meta;
     let mut o = String::new();
-    o.push_str("% Written by FisiTexto (https://github.com/mrcandrade/fisitexto).\n");
+    o.push_str("% Written by FisiLab Texto (https://github.com/mrcandrade/fisilab-texto).\n");
     o.push_str("\\documentclass{article}\n");
     o.push_str("\\usepackage[T1]{fontenc}\n");
     if w.uses.ulem {

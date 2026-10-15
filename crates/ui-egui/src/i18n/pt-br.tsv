@@ -15,7 +15,7 @@
 	(no suggestions)	(sem sugestões)
 	1.5 Line Spacing	Espaçamento de 1,5 linha
 	About	Sobre
-	About FisiTexto	Sobre o FisiTexto
+	About Texto	Sobre o Texto
 	Accept	Aceitar
 	Accept All Changes	Aceitar todas as alterações
 	Accept This Change	Aceitar esta alteração
@@ -272,7 +272,7 @@
 	Copy	Copiar
 	Copy Formatting	Copiar formatação
 	Corrections	Correções
-	Couldn't make FisiTexto the default: {error}	Não foi possível tornar o FisiTexto o aplicativo padrão: {error}
+	Couldn't make Texto the default: {error}	Não foi possível tornar o Texto o aplicativo padrão: {error}
 	Count words in text boxes and notes	Contar palavras em caixas de texto e notas
 	Cover Page	Capa
 	Create	Criar
@@ -310,15 +310,15 @@
 	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	Arraste um retângulo para desenhar uma tabela, ou uma linha sobre as células para dividi-las. Esc encerra.
 	Draw Table	Desenhar tabela
 	Edit Comment	Editar comentário
-	In Default apps, choose FisiTexto for the document types you want it to open.	Em Aplicativos padrão, escolha o FisiTexto para os tipos de documento que você quer que ele abra.
+	In Default apps, choose Texto for the document types you want it to open.	Em Aplicativos padrão, escolha o Texto para os tipos de documento que você quer que ele abra.
 	Left Margin	Margem esquerda
 	Indents and Spacing	Recuos e espaçamento
 	Line breaking	Quebra de linhas
-	Make FisiTexto the default for Word documents…	Tornar o FisiTexto o aplicativo padrão para documentos do Word…
+	Make Texto the default for Word documents…	Tornar o Texto o aplicativo padrão para documentos do Word…
 	More templates →	Mais modelos →
 	No templates match your search.	Nenhum modelo corresponde à pesquisa.
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	A partir de agora, arquivos .docx, .doc, .rtf e .odt e modelos do Word abrem no FisiTexto.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Abre Configurações › Aplicativos padrão, onde você escolhe o FisiTexto para .docx e os outros tipos de documento.
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	A partir de agora, arquivos .docx, .doc, .rtf e .odt e modelos do Word abrem no FisiLab Texto.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Abre Configurações › Aplicativos padrão, onde você escolhe o Texto para .docx e os outros tipos de documento.
 	Reopen	Reabrir
 	Right Margin	Margem direita
 	Distribute letters	Distribuir letras
@@ -328,8 +328,8 @@
 	Right (vertical)	Direita (vertical)
 	Ruby text:	Texto ruby:
 	Search for templates	Pesquisar modelos
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Para abrir documentos do Word com o FisiTexto por padrão: selecione um no Finder, escolha Arquivo › Obter Informações, selecione o FisiTexto em “Abrir com” e clique em “Alterar Tudo”.
-	FisiTexto is now the default app for Word documents.	O FisiTexto agora é o aplicativo padrão para documentos do Word.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Para abrir documentos do Word com o Texto por padrão: selecione um no Finder, escolha Arquivo › Obter Informações, selecione o Texto em “Abrir com” e clique em “Alterar Tudo”.
+	Texto is now the default app for Word documents.	O Texto agora é o aplicativo padrão para documentos do Word.
 	development build	versão de desenvolvimento
 	Diagonal	Diagonal
 	Diamond	Losango
@@ -380,7 +380,7 @@
 	Equation	Equação
 	Eraser	Borracha
 	Even Page	Página par
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Todo comando está disponível para scripts e agentes de IA: execute `fisitexto-cli mcp` para um servidor MCP, ou inicie o aplicativo com `--control <port>` para o canal de controle JSON.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Todo comando está disponível para scripts e agentes de IA: execute `fisilab-texto-cli mcp` para um servidor MCP, ou inicie o aplicativo com `--control <port>` para o canal de controle JSON.
 	Export	Exportar
 	Export a copy to share (PDF, Word document)	Exporte uma cópia para compartilhar (PDF, documento Word)
 	Export Page as PNG	Exportar página como PNG
@@ -947,7 +947,7 @@
 	Word Left	Palavra à esquerda
 	Word Right	Palavra à direita
 	WordArt	Texto artístico
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Palavras
 	Words only	Somente palavras
 	Wrap Text	Quebrar texto
@@ -1010,7 +1010,7 @@
 	Stopped	Parado
 	Speed	Velocidade
 	Normal speed	Velocidade normal
-	AutoSave documents you have saved in FisiTexto	Salvar automaticamente documentos que você salvou no FisiTexto
+	AutoSave documents you have saved in FisiLab Texto	Salvar automaticamente documentos que você salvou no FisiLab Texto
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Falha no salvamento automático: {error}. Salve o documento para reativar o salvamento automático.
 	Couldn't download {name}: {error}	Não foi possível baixar {name}: {error}
 	Do you want to save changes to {name}?	Deseja salvar as alterações em {name}?
@@ -1345,7 +1345,7 @@
 	The document will be saved with a password. Save it to protect it.	O documento será salvo com senha. Salve-o para protegê-lo.
 	The password is removed. Save the document to keep the change.	A senha foi removida. Salve o documento para manter a alteração.
 	The passwords don't match.	As senhas não coincidem.
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Guarde a senha em um lugar seguro: sem ela, ninguém, nem o FisiTexto, consegue abrir o documento. Deixe as duas caixas vazias para remover a senha.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Guarde a senha em um lugar seguro: sem ela, ninguém, nem o FisiLab Texto, consegue abrir o documento. Deixe as duas caixas vazias para remover a senha.
 
 # Interface text routed through translation (#313)
 	Align Top Left	Alinhar acima à esquerda
@@ -1735,7 +1735,7 @@
 	Word document	Documento do Word
 	All files	Todos os arquivos
 	Recipient lists	Listas de destinatários
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	A caixa de diálogo de arquivos do sistema não está disponível, então o FisiTexto mostra a sua própria. Para usar a do sistema, instale um portal seletor de arquivos (como xdg-desktop-portal-gtk) ou o zenity.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	A caixa de diálogo de arquivos do sistema não está disponível, então o FisiLab Texto mostra a sua própria. Para usar a do sistema, instale um portal seletor de arquivos (como xdg-desktop-portal-gtk) ou o zenity.
 	Up one level	Subir um nível
 	Home folder	Pasta pessoal
 	{name} wasn't found.	{name} não foi encontrado.
@@ -1743,8 +1743,8 @@
 	This folder can't be read: {error}	Não é possível ler esta pasta: {error}
 	Showing the first {count} items.	Mostrando os primeiros {count} itens.
 	File name:	Nome do arquivo:
-	Browse in FisiTexto…	Procurar no FisiTexto…
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Abra um arquivo com o navegador próprio do FisiTexto quando a caixa de diálogo de arquivos do sistema não aparecer.
+	Browse in FisiLab Texto…	Procurar no FisiLab Texto…
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Abra um arquivo com o navegador próprio do FisiLab Texto quando a caixa de diálogo de arquivos do sistema não aparecer.
 	Hide White Space	Ocultar espaço em branco
 	All pages	Todas as páginas
 	Current page	Página atual
@@ -2079,8 +2079,8 @@
 	Region:	Região:
 	Automatic ({region})	Automático ({region})
 	Start-up	Inicialização
-	Show the Start screen when FisiTexto starts	Mostrar a tela inicial ao abrir o FisiTexto
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Ativado: o FisiTexto abre em Arquivo › Início, com um documento em branco, os modelos e seus documentos recentes. Desativado: abre um documento em branco.
+	Show the Start screen when FisiLab Texto starts	Mostrar a tela inicial ao abrir o FisiLab Texto
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Ativado: o FisiLab Texto abre em Arquivo › Início, com um documento em branco, os modelos e seus documentos recentes. Desativado: abre um documento em branco.
 	Privacy Options	Opções de privacidade
 	Trust Center	Central de confiabilidade
 	Privacy for this document	Privacidade deste documento

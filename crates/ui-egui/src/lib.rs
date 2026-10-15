@@ -20,10 +20,10 @@ macro_rules! tl {
     };
 }
 
-/// Suíte FisiLab: how FisiTexto presents itself in the splash screen and in the "Sobre a Suíte
+/// Suíte FisiLab: how Texto presents itself in the splash screen and in the "Sobre a Suíte
 /// FisiLab" window (`fisilab_brand`).
 pub const APP_INFO: fisilab_brand::AppInfo = fisilab_brand::AppInfo {
-    name: "FisiTexto",
+    name: "Texto",
     tagline: "Processador de texto",
     equivalent: "Microsoft Word",
     version: env!("CARGO_PKG_VERSION"),
@@ -32,8 +32,8 @@ pub const APP_INFO: fisilab_brand::AppInfo = fisilab_brand::AppInfo {
     upstream_copyright: "© 2026 ArtCraft Team e contribuidores do WordCraft",
 };
 
-/// Where FisiTexto's problems are reported (Help › Reportar um problema).
-pub const REPORT_ISSUE_URL: &str = "https://github.com/mrcandrade/fisitexto/issues";
+/// Where Texto's problems are reported (Help › Reportar um problema).
+pub const REPORT_ISSUE_URL: &str = "https://github.com/mrcandrade/fisilab-texto/issues";
 
 /// The Suíte FisiLab links of the Help tab and the Backstage: (command id, label, address).
 pub const FISILAB_LINKS: [(&str, &str, &str); 4] = [
@@ -1197,7 +1197,7 @@ impl WordApp {
             // MCP get an error.
             "ui.makeDefaultApp" => {
                 return Some(Err(
-                    "making FisiTexto the default app needs a click in File › Options › General; scripts and agents can't change system defaults"
+                    "making Texto the default app needs a click in File › Options › General; scripts and agents can't change system defaults"
                         .into(),
                 ));
             }
@@ -1258,20 +1258,20 @@ impl WordApp {
     /// command, so nothing programmatic (control channel, MCP, macros) can change system defaults.
     pub(crate) fn make_default_app(&mut self) -> Result<Value, String> {
         let Some(hook) = self.services.make_default_app.as_ref() else {
-            return Err("FisiTexto can't change the default apps here; use your system's settings".into());
+            return Err("Texto can't change the default apps here; use your system's settings".into());
         };
         match hook() {
             Ok(DefaultApp::SettingsOpened) => {
-                self.status(tl!("In Default apps, choose FisiTexto for the document types you want it to open."));
+                self.status(tl!("In Default apps, choose Texto for the document types you want it to open."));
                 Ok(json!({"settingsOpened": true}))
             }
             Ok(DefaultApp::MadeDefault) => {
-                self.status(tl!("FisiTexto is now the default app for Word documents."));
+                self.status(tl!("Texto is now the default app for Word documents."));
                 Ok(json!({"default": true}))
             }
             Err(e) => {
                 log::warn!("make default app: {e}");
-                let msg = i18n::fmt(tl!("Couldn't make FisiTexto the default: {error}"), &[("error", &e)]);
+                let msg = i18n::fmt(tl!("Couldn't make Texto the default: {error}"), &[("error", &e)]);
                 self.status(msg.clone());
                 Err(msg)
             }
@@ -1652,9 +1652,9 @@ impl WordApp {
         // Suíte FisiLab: the About window and, at start-up, the splash screen, on top of everything.
         fisilab_brand::frame(&ctx, &APP_INFO);
         let title = if self.has_document() {
-            format!("{}{} - FisiTexto", self.title_stem(), if self.session.dirty { " •" } else { "" })
+            format!("{}{} - Texto", self.title_stem(), if self.session.dirty { " •" } else { "" })
         } else {
-            "FisiTexto".to_string()
+            "Texto".to_string()
         };
         if title != self.sent_title {
             ctx.send_viewport_cmd(egui::ViewportCommand::Title(title.clone()));
@@ -2135,7 +2135,7 @@ mod tests {
         let a = h.state_mut();
         assert!(!a.ui.backstage, "Esc leaves the Start screen");
         assert!(!a.has_document(), "for an empty window, not a blank document");
-        assert_eq!(a.sent_title, "FisiTexto", "the window is titled with the app alone");
+        assert_eq!(a.sent_title, "Texto", "the window is titled with the app alone");
         // The ribbon's commands are off, but Help, the File tab and the settings work.
         for id in ["format.bold", "text.insert", "file.save", "file.saveAs", "file.print", "edit.paste", "insert.table", "ui.print"] {
             assert!(!widgets::enabled(a, id), "{id} is off with no document");
@@ -3335,7 +3335,7 @@ mod tests {
     #[test]
     fn the_default_app_button_shows_only_with_the_hosts_hook() {
         use egui_kittest::kittest::Queryable;
-        const LABEL: &str = "Make FisiTexto the default for Word documents…";
+        const LABEL: &str = "Make Texto the default for Word documents…";
         for hook in [false, true] {
             let calls = std::rc::Rc::new(std::cell::Cell::new(0));
             let mut a = app();
@@ -4361,7 +4361,7 @@ mod tests {
             assert!(works_without_document(id), "{id}");
         }
         assert!(FISILAB_LINKS.iter().all(|(_, _, url)| url.starts_with("https://github.com/")));
-        assert_eq!(APP_INFO.name, "FisiTexto");
+        assert_eq!(APP_INFO.name, "Texto");
         // A fresh install's interface language (pt-br outside tests) has a catalog.
         assert!(i18n::Lang::from_code("pt-br").is_some() && i18n::normalize_pref(i18n::DEFAULT_LANGUAGE).is_some());
     }

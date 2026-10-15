@@ -4,18 +4,18 @@
 use std::path::{Path, PathBuf};
 
 /// The app's settings folder (preferences, logs, key files): macOS
-/// `~/Library/Application Support/FisiTexto`, Windows `%APPDATA%\FisiTexto`, otherwise
-/// `$XDG_CONFIG_HOME/fisitexto` or `~/.config/fisitexto`.
+/// `~/Library/Application Support/FisiLab Texto`, Windows `%APPDATA%\FisiLab Texto`, otherwise
+/// `$XDG_CONFIG_HOME/fisilab-texto` or `~/.config/fisilab-texto`.
 pub fn settings_dir() -> Option<PathBuf> {
     if cfg!(target_os = "macos") {
-        std::env::var_os("HOME").map(|h| PathBuf::from(h).join("Library/Application Support/FisiTexto"))
+        std::env::var_os("HOME").map(|h| PathBuf::from(h).join("Library/Application Support/FisiLab Texto"))
     } else if cfg!(windows) {
-        std::env::var_os("APPDATA").map(|a| PathBuf::from(a).join("FisiTexto"))
+        std::env::var_os("APPDATA").map(|a| PathBuf::from(a).join("FisiLab Texto"))
     } else {
         std::env::var_os("XDG_CONFIG_HOME")
             .map(PathBuf::from)
             .or_else(|| std::env::var_os("HOME").map(|h| PathBuf::from(h).join(".config")))
-            .map(|c| c.join("fisitexto"))
+            .map(|c| c.join("fisilab-texto"))
     }
 }
 
@@ -77,7 +77,7 @@ mod tests {
     fn settings_dir_is_the_apps_folder() {
         if let Some(d) = settings_dir() {
             let name = d.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            assert!(name == "fisitexto" || name == "FisiTexto", "{}", d.display());
+            assert!(name == "fisilab-texto" || name == "FisiLab Texto", "{}", d.display());
         }
     }
 }

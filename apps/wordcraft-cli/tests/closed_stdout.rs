@@ -6,7 +6,7 @@ use std::io::{Read, Write};
 use std::process::{Command, Stdio};
 
 fn cli() -> Command {
-    Command::new(env!("CARGO_BIN_EXE_fisitexto-cli"))
+    Command::new(env!("CARGO_BIN_EXE_fisilab-texto-cli"))
 }
 
 #[test]

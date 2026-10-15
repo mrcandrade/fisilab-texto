@@ -362,9 +362,9 @@ impl Bridge {
                 Ok(Value::Null)
             }
             "Document_importDocument" | "Document_exportDocument" => {
-                Err("FisiTexto doesn't support Zotero's document transfer; the citations are already stored the way Word keeps them".into())
+                Err("Texto doesn't support Zotero's document transfer; the citations are already stored the way Word keeps them".into())
             }
-            m => Err(format!("FisiTexto doesn't support {m}")),
+            m => Err(format!("Texto doesn't support {m}")),
         }
     }
 

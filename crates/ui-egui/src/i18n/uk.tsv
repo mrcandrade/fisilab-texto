@@ -15,7 +15,7 @@
 	(no suggestions)	(немає пропозицій)
 	1.5 Line Spacing	Міжрядковий інтервал 1,5
 	About	Про програму
-	About FisiTexto	Про FisiTexto
+	About Texto	Про Texto
 	Accept	Прийняти
 	Accept All Changes	Прийняти всі зміни
 	Accept This Change	Прийняти цю зміну
@@ -279,7 +279,7 @@
 	Copy	Копіювати
 	Copy Formatting	Копіювати форматування
 	Corrections	Виправлення
-	Couldn't make FisiTexto the default: {error}	Не вдалося зробити FisiTexto типовою програмою: {error}
+	Couldn't make Texto the default: {error}	Не вдалося зробити Texto типовою програмою: {error}
 	Count words in text boxes and notes	Рахувати слова в текстових полях і виносках
 	Cover Page	Титульна сторінка
 	Create	Створити
@@ -317,15 +317,15 @@
 	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	Перетягніть прямокутник, щоб намалювати таблицю, або лінію через клітинки, щоб їх розділити. Esc завершує.
 	Draw Table	Намалювати таблицю
 	Edit Comment	Редагувати коментар
-	In Default apps, choose FisiTexto for the document types you want it to open.	У програмах за замовчуванням виберіть FisiTexto для типів документів, які він має відкривати.
+	In Default apps, choose Texto for the document types you want it to open.	У програмах за замовчуванням виберіть Texto для типів документів, які він має відкривати.
 	Left Margin	Ліве поле
 	Indents and Spacing	Відступи й інтервали
 	Line breaking	Розрив рядків
-	Make FisiTexto the default for Word documents…	Зробити FisiTexto типовою програмою для документів Word…
+	Make Texto the default for Word documents…	Зробити Texto типовою програмою для документів Word…
 	More templates →	Більше шаблонів →
 	No templates match your search.	Немає шаблонів, що відповідають пошуку.
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	Відтепер файли .docx, .doc, .rtf, .odt і шаблони Word відкриватимуться у FisiTexto.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Відкриває Параметри › Програми за замовчуванням, де ви вибираєте FisiTexto для .docx та інших типів документів.
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	Відтепер файли .docx, .doc, .rtf, .odt і шаблони Word відкриватимуться у FisiLab Texto.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Відкриває Параметри › Програми за замовчуванням, де ви вибираєте Texto для .docx та інших типів документів.
 	Reopen	Відкрити знову
 	Right Margin	Праве поле
 	Distribute letters	Розподілити літери
@@ -335,8 +335,8 @@
 	Right (vertical)	Праворуч (вертикально)
 	Ruby text:	Текст рубі:
 	Search for templates	Пошук шаблонів
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Щоб документи Word типово відкривалися у FisiTexto: виберіть документ у Finder, оберіть Файл › Отримати інфо, виберіть FisiTexto у розділі «Відкривати за допомогою» і натисніть «Змінити все».
-	FisiTexto is now the default app for Word documents.	FisiTexto тепер типова програма для документів Word.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Щоб документи Word типово відкривалися у Texto: виберіть документ у Finder, оберіть Файл › Отримати інфо, виберіть Texto у розділі «Відкривати за допомогою» і натисніть «Змінити все».
+	Texto is now the default app for Word documents.	Texto тепер типова програма для документів Word.
 	development build	Збірка для розробки
 	Diagonal	Діагональ
 	Diamond	Ромб
@@ -389,7 +389,7 @@
 	Equation	Рівняння
 	Eraser	Гумка
 	Even Page	Парна сторінка
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Кожна команда доступна сценаріям і агентам ШІ: запустіть `fisitexto-cli mcp` для сервера MCP або відкрийте програму з `--control <port>` для каналу керування JSON.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Кожна команда доступна сценаріям і агентам ШІ: запустіть `fisilab-texto-cli mcp` для сервера MCP або відкрийте програму з `--control <port>` для каналу керування JSON.
 	Export	Експорт
 	Export a copy to share (PDF, Word document)	Експортувати копію для спільного доступу (PDF, документ Word)
 	Export Page as PNG	Експортувати сторінку у PNG
@@ -975,7 +975,7 @@
 	Word Left	На слово ліворуч
 	Word Right	На слово праворуч
 	WordArt	WordArt
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Слова
 	Words only	Лише слова
 	Wrap Text	Обтікання текстом
@@ -1038,7 +1038,7 @@
 	Stopped	Зупинено
 	Speed	Швидкість
 	Normal speed	Звичайна швидкість
-	AutoSave documents you have saved in FisiTexto	Автоматично зберігати документи, збережені у FisiTexto
+	AutoSave documents you have saved in FisiLab Texto	Автоматично зберігати документи, збережені у FisiLab Texto
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Не вдалося виконати автозбереження: {error}. Збережіть документ, щоб знову ввімкнути автозбереження.
 	Couldn't download {name}: {error}	Не вдалося завантажити {name}: {error}
 	Do you want to save changes to {name}?	Зберегти зміни в {name}?
@@ -1345,7 +1345,7 @@
 	The document will be saved with a password. Save it to protect it.	Документ буде збережено з паролем. Збережіть його, щоб захистити.
 	The password is removed. Save the document to keep the change.	Пароль видалено. Збережіть документ, щоб зберегти зміну.
 	The passwords don't match.	Паролі не збігаються.
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Зберігайте пароль у надійному місці: без нього ніхто, зокрема FisiTexto, не зможе відкрити документ. Залиште обидва поля порожніми, щоб видалити пароль.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Зберігайте пароль у надійному місці: без нього ніхто, зокрема FisiLab Texto, не зможе відкрити документ. Залиште обидва поля порожніми, щоб видалити пароль.
 
 # Interface text routed through translation (#313)
 	Align Top Left	Вирівняти вгорі ліворуч
@@ -1735,7 +1735,7 @@
 	Word document	Документ Word
 	All files	Усі файли
 	Recipient lists	Списки одержувачів
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Системне діалогове вікно файлів недоступне, тож FisiTexto показує власне. Щоб отримати системне вікно, установіть портал вибору файлів (наприклад, xdg-desktop-portal-gtk) або zenity.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Системне діалогове вікно файлів недоступне, тож FisiLab Texto показує власне. Щоб отримати системне вікно, установіть портал вибору файлів (наприклад, xdg-desktop-portal-gtk) або zenity.
 	Up one level	На рівень вище
 	Home folder	Домашня тека
 	{name} wasn't found.	{name} не знайдено.
@@ -1743,8 +1743,8 @@
 	This folder can't be read: {error}	Не вдається прочитати цю теку: {error}
 	Showing the first {count} items.	Показано лише перші елементи: {count}.
 	File name:	Ім'я файлу:
-	Browse in FisiTexto…	Огляд у FisiTexto…
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Відкрити файл власним оглядачем FisiTexto, коли системне діалогове вікно файлів не з'являється.
+	Browse in FisiLab Texto…	Огляд у FisiLab Texto…
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Відкрити файл власним оглядачем FisiLab Texto, коли системне діалогове вікно файлів не з'являється.
 	Hide White Space	Приховати порожній простір
 	All pages	Усі сторінки
 	Current page	Поточна сторінка
@@ -2079,8 +2079,8 @@
 	Region:	Регіон:
 	Automatic ({region})	Автоматично ({region})
 	Start-up	Запуск
-	Show the Start screen when FisiTexto starts	Показувати початковий екран під час запуску FisiTexto
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Увімкнено: FisiTexto відкривається на сторінці Файл › Основне з порожнім документом, шаблонами та нещодавніми документами. Вимкнено: відкривається порожній документ.
+	Show the Start screen when FisiLab Texto starts	Показувати початковий екран під час запуску FisiLab Texto
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Увімкнено: FisiLab Texto відкривається на сторінці Файл › Основне з порожнім документом, шаблонами та нещодавніми документами. Вимкнено: відкривається порожній документ.
 	Privacy Options	Параметри конфіденційності
 	Trust Center	Центр безпеки
 	Privacy for this document	Конфіденційність цього документа

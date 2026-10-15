@@ -442,7 +442,7 @@ impl Tokens {
 
 /// Where [`apply`] records whether the Suíte FisiLab palette is installed.
 fn ufrgs_palette_id() -> egui::Id {
-    egui::Id::new("fisitexto-ufrgs-palette")
+    egui::Id::new("fisilab-texto-ufrgs-palette")
 }
 
 /// `a` moved towards `b` by `t` (0–1), channel by channel (both opaque).

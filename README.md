@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/fisilab/fisitexto-256.png" alt="Ícone do FisiTexto" width="128">
+  <img src="assets/fisilab/fisilab-texto-256.png" alt="Ícone do Texto" width="128">
 </p>
 
-<h1 align="center">FisiTexto</h1>
+<h1 align="center">Texto · Suíte FisiLab</h1>
 
 <p align="center">
   <b>Processador de texto</b><br>
@@ -32,7 +32,7 @@
   alterações (aceitar e rejeitar), comparação de documentos e verificador de acessibilidade.
 - **Mala direta:** a partir de um CSV, com campos, bloco de endereço, envelopes e etiquetas.
 - **Privado e rápido:** tudo funciona sem internet; o texto é diagramado em Rust nativo, na GPU.
-- **Automação:** cada ação é um comando, disponível pela linha de comando (`fisitexto-cli`), por
+- **Automação:** cada ação é um comando, disponível pela linha de comando (`fisilab-texto-cli`), por
   um canal de controle JSON e por um servidor MCP para agentes de IA.
 
 A interface abre em português do Brasil e pode ser trocada em Arquivo › Opções. Os temas
@@ -43,8 +43,8 @@ continuam disponíveis.
 
 ### Windows
 
-Baixe o instalador `FisiTexto-Setup-<versão>.exe` no portal de downloads da Suíte FisiLab ou na
-página de [Releases do `mrcandrade/fisitexto`](https://github.com/mrcandrade/fisitexto/releases)
+Baixe o instalador `FisiLab-Texto-Setup-<versão>.exe` no portal de downloads da Suíte FisiLab ou na
+página de [Releases do `mrcandrade/fisilab-texto`](https://github.com/mrcandrade/fisilab-texto/releases)
 e execute-o.
 
 ### Compilar a partir do código
@@ -52,18 +52,18 @@ e execute-o.
 É preciso ter o [Rust](https://www.rust-lang.org/pt-BR/tools/install) instalado.
 
 ```sh
-git clone https://github.com/mrcandrade/fisitexto
-cd fisitexto
-cargo run --release -p wordcraft                  # o aplicativo (fisitexto.exe)
+git clone https://github.com/mrcandrade/fisilab-texto
+cd fisilab-texto
+cargo run --release -p wordcraft                  # o aplicativo (fisilab-texto.exe)
 cargo run --release -p wordcraft -- --sample      # com o documento de exemplo
-cargo run --release -p wordcraft-cli -- --help    # a linha de comando (fisitexto-cli.exe)
+cargo run --release -p wordcraft-cli -- --help    # a linha de comando (fisilab-texto-cli.exe)
 ```
 
-Os executáveis ficam em `target/release/` (`fisitexto` e `fisitexto-cli`).
+Os executáveis ficam em `target/release/` (`fisilab-texto` e `fisilab-texto-cli`).
 
 ## Créditos
 
-O FisiTexto é uma versão modificada do [WordCraft](https://github.com/storytold/wordcraft), criado
+O Texto é uma versão modificada do [WordCraft](https://github.com/storytold/wordcraft), criado
 pelo ArtCraft Team e contribuidores. Todo o trabalho de edição, formatos de arquivo e ferramentas
 vem do projeto original; o FisiLab alterou o nome, a identidade visual, o tema de cores, a tela de
 abertura, os links e o empacotamento (veja [MODIFICACOES.md](MODIFICACOES.md)).

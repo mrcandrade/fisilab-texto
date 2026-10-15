@@ -19,7 +19,7 @@
 	1.5 Line Spacing	1,5-es sorköz
 	AaBbCcDd	AaÁáBbCc
 	About	Névjegy
-	About FisiTexto	A FisiTexto névjegye
+	About Texto	A Texto névjegye
 	Accept	Elfogadás
 	Accept All Changes	Összes módosítás elfogadása
 	Accept This Change	E módosítás elfogadása
@@ -245,7 +245,7 @@
 	Equation	Egyenlet
 	Eraser	Radír
 	Even Page	Páros oldal
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Minden parancs elérhető szkriptekből és MI-ágensekből is: MCP-szerverhez futtasd a `fisitexto-cli mcp` parancsot, a JSON-vezérlőcsatornához pedig indítsd az alkalmazást a `--control <port>` kapcsolóval.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Minden parancs elérhető szkriptekből és MI-ágensekből is: MCP-szerverhez futtasd a `fisilab-texto-cli mcp` parancsot, a JSON-vezérlőcsatornához pedig indítsd az alkalmazást a `--control <port>` kapcsolóval.
 	Export	Exportálás
 	Export a copy to share (PDF, Word document)	Másolat exportálása megosztáshoz (PDF, Word-dokumentum)
 	Export Page as PNG	Oldal exportálása PNG-ként
@@ -808,7 +808,7 @@
 	Word Left	Szó balra
 	Word Right	Szó jobbra
 	WordArt	WordArt
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Szavak
 	Words only	Csak szavak
 	Wrap Text	Szöveg körbefuttatása
@@ -825,7 +825,7 @@
 	Show documents with their colours inverted, like View › Switch Modes. Saving, printing and PDFs are unchanged.	A dokumentumok fordított színekkel jelennek meg, mint a Nézet › Módváltás esetén. A mentés, a nyomtatás és a PDF változatlan marad.
 	Only web (http, https) and email (mailto) links can be followed	Csak webes (http, https) és e-mail (mailto) link nyitható meg
 	Apply Styles	Stílusok alkalmazása
-	AutoSave documents you have saved in FisiTexto	A FisiTextoban mentett dokumentumok automatikus mentése
+	AutoSave documents you have saved in FisiLab Texto	A FisiLab Textoban mentett dokumentumok automatikus mentése
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Az automatikus mentés sikertelen: {error}. Az újbóli bekapcsolásához mentsd a dokumentumot.
 	Bottom Margin	Alsó margó
 	Edit Comment	Megjegyzés szerkesztése
@@ -1524,7 +1524,7 @@
 	The document will be saved with a password. Save it to protect it.	A dokumentum jelszóval lesz mentve. A védelemhez mentsd.
 	The password is removed. Save the document to keep the change.	A jelszó eltávolítva. A módosítás megtartásához mentsd a dokumentumot.
 	The passwords don't match.	A két jelszó nem egyezik.
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Tartsd biztonságos helyen a jelszót: nélküle senki, még a FisiTexto sem tudja megnyitni a dokumentumot. A jelszó eltávolításához hagyd üresen mindkét mezőt.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Tartsd biztonságos helyen a jelszót: nélküle senki, még a FisiLab Texto sem tudja megnyitni a dokumentumot. A jelszó eltávolításához hagyd üresen mindkét mezőt.
 	{cols}×{rows} Table	{cols}×{rows} táblázat
 	Name	Név
 	PRs	PR-ek
@@ -2283,7 +2283,7 @@
 	Word document	Word-dokumentum
 	All files	Minden fájl
 	Recipient lists	Címzettlisták
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	A rendszer fájlpárbeszédablaka nem érhető el, ezért a FisiTexto a sajátját mutatja. A rendszer párbeszédablakához telepíts egy fájlválasztó portált (például xdg-desktop-portal-gtk) vagy a zenity programot.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	A rendszer fájlpárbeszédablaka nem érhető el, ezért a FisiLab Texto a sajátját mutatja. A rendszer párbeszédablakához telepíts egy fájlválasztó portált (például xdg-desktop-portal-gtk) vagy a zenity programot.
 	Up one level	Egy szinttel feljebb
 	Home folder	Saját mappa
 	{name} wasn't found.	Nem található: {name}
@@ -2291,8 +2291,8 @@
 	This folder can't be read: {error}	Ez a mappa nem olvasható: {error}
 	Showing the first {count} items.	Az első {count} elem látható.
 	File name:	Fájlnév:
-	Browse in FisiTexto…	Tallózás a FisiTextoban…
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Fájl megnyitása a FisiTexto saját tallózójával, ha a rendszer fájlpárbeszédablaka nem jelenik meg.
+	Browse in FisiLab Texto…	Tallózás a FisiLab Textoban…
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Fájl megnyitása a FisiLab Texto saját tallózójával, ha a rendszer fájlpárbeszédablaka nem jelenik meg.
 	Hide White Space	Üres terület elrejtése
 	All pages	Minden oldal
 	Current page	Aktuális oldal
@@ -2428,13 +2428,13 @@
 	Use "an" before a vowel sound	Magánhangzóval kezdődő szó előtt „an” áll
 	Use "a" before a consonant sound	Mássalhangzóval kezdődő szó előtt „a” áll
 	The spelling and grammar check is complete.	A helyesírás- és nyelvhelyesség-ellenőrzés befejeződött.
-	Couldn't make FisiTexto the default: {error}	Nem sikerült a FisiTextoot alapértelmezetté tenni: {error}
-	In Default apps, choose FisiTexto for the document types you want it to open.	Az Alapértelmezett alkalmazások között válassza a FisiTextoot azokhoz a dokumentumtípusokhoz, amelyeket meg kell nyitnia.
-	Make FisiTexto the default for Word documents…	A FisiTexto legyen az alapértelmezett a Word-dokumentumokhoz…
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	Mostantól a .docx, .doc, .rtf és .odt fájlok, valamint a Word-sablonok a FisiTextotal nyílnak meg.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Megnyitja a Beállítások › Alapértelmezett alkalmazások lapot, ahol a FisiTextoot választhatja a .docx és a többi dokumentumtípus számára.
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Ha a Word-dokumentumokat alapértelmezés szerint a FisiTextotal szeretné megnyitni: jelöljön ki egyet a Finderben, válassza a Fájl › Információ parancsot, a „Megnyitás ezzel” alatt válassza a FisiTextoot, majd kattintson az „Összes módosítása” gombra.
-	FisiTexto is now the default app for Word documents.	Mostantól a FisiTexto az alapértelmezett alkalmazás a Word-dokumentumokhoz.
+	Couldn't make Texto the default: {error}	Nem sikerült a Textoot alapértelmezetté tenni: {error}
+	In Default apps, choose Texto for the document types you want it to open.	Az Alapértelmezett alkalmazások között válassza a Textoot azokhoz a dokumentumtípusokhoz, amelyeket meg kell nyitnia.
+	Make Texto the default for Word documents…	A Texto legyen az alapértelmezett a Word-dokumentumokhoz…
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	Mostantól a .docx, .doc, .rtf és .odt fájlok, valamint a Word-sablonok a FisiLab Textotal nyílnak meg.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Megnyitja a Beállítások › Alapértelmezett alkalmazások lapot, ahol a Textoot választhatja a .docx és a többi dokumentumtípus számára.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Ha a Word-dokumentumokat alapértelmezés szerint a Textotal szeretné megnyitni: jelöljön ki egyet a Finderben, válassza a Fájl › Információ parancsot, a „Megnyitás ezzel” alatt válassza a Textoot, majd kattintson az „Összes módosítása” gombra.
+	Texto is now the default app for Word documents.	Mostantól a Texto az alapértelmezett alkalmazás a Word-dokumentumokhoz.
 	Numerals:	Számjegyek:
 	Numerals	Számjegyek
 	Hindi	Hindi
@@ -2450,8 +2450,8 @@
 	Undo 1 Action	1 művelet visszavonása
 	Undo {n} Actions	{n} művelet visszavonása
 	Start-up	Indítás
-	Show the Start screen when FisiTexto starts	Kezdőképernyő megjelenítése a FisiTexto indításakor
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Be: a FisiTexto a Fájl › Kezdőlap oldalon nyílik meg, üres dokumentummal, a sablonokkal és a legutóbbi dokumentumokkal. Ki: üres dokumentumot nyit meg.
+	Show the Start screen when FisiLab Texto starts	Kezdőképernyő megjelenítése a FisiLab Texto indításakor
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Be: a FisiLab Texto a Fájl › Kezdőlap oldalon nyílik meg, üres dokumentummal, a sablonokkal és a legutóbbi dokumentumokkal. Ki: üres dokumentumot nyit meg.
 	Correct TWo INitial CApitals	KÉt KEzdő NAgybetű javítása
 	Correct accidental usage of cAPS LOCK key	A cAPS LOCK billentyű véletlen használatának javítása
 	Region:	Régió:

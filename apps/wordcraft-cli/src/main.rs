@@ -11,25 +11,25 @@ use serde_json::{Value, json};
 use wordcraft_engine::Session;
 
 const USAGE: &str = "\
-fisitexto-cli — FisiTexto pela linha de comando (Suíte FisiLab · UFRGS; baseado no WordCraft)
+fisilab-texto-cli — Texto pela linha de comando (Suíte FisiLab · UFRGS; baseado no WordCraft)
 
 USAGE:
-  fisitexto-cli convert <in> <out> [--markup] [--format wordml2003|flatopc]
+  fisilab-texto-cli convert <in> <out> [--markup] [--format wordml2003|flatopc]
                                               convert between formats (docx, doc [read], pdf, odt, rtf, html, md, tex, txt, json, png,
                                               xml); an .xml file is a Word XML Document (Flat OPC), or with
                                               --format wordml2003 a Word 2003 XML Document;
                                               --markup (Print Markup): comments beside each page and
                                               tracked changes in pdf/png, a comment list in html/md/txt
-  fisitexto-cli info <file>                   pages, words, paragraphs, properties (JSON)
-  fisitexto-cli text <file>                   plain text
-  fisitexto-cli inspect <file>                document structure (JSON)
-  fisitexto-cli render <file> <out.png> [--page N] [--scale S]
-  fisitexto-cli run [--file F | --template T] --cmd 'id={json}' [--cmd …] [--save OUT] [--print]
+  fisilab-texto-cli info <file>                   pages, words, paragraphs, properties (JSON)
+  fisilab-texto-cli text <file>                   plain text
+  fisilab-texto-cli inspect <file>                document structure (JSON)
+  fisilab-texto-cli render <file> <out.png> [--page N] [--scale S]
+  fisilab-texto-cli run [--file F | --template T] --cmd 'id={json}' [--cmd …] [--save OUT] [--print]
                     [--author NAME]           run commands headlessly, then save (--author names
                                               who tracked changes and comments are by)
-  fisitexto-cli commands [--json]             list every command
-  fisitexto-cli parity [--markdown]           feature-catalog parity
-  fisitexto-cli mcp [--connect HOST:PORT | --author NAME] [--automation-read-root DIR] [--automation-write-root DIR]
+  fisilab-texto-cli commands [--json]             list every command
+  fisilab-texto-cli parity [--markdown]           feature-catalog parity
+  fisilab-texto-cli mcp [--connect HOST:PORT | --author NAME] [--automation-read-root DIR] [--automation-write-root DIR]
                                               MCP server on stdio (headless, or bridged to the app).
                                               --automation-read-root / --automation-write-root confine
                                               the files the agent's commands read (open, insert text
@@ -37,12 +37,12 @@ USAGE:
                                               export, merge output…) to DIR, links followed; a root left
                                               out grants none of its access. They apply to the headless
                                               server and are an error with --connect.
-  fisitexto-cli zotero <command> <file> [--cmd 'id={json}' …] [--save OUT] [--trace] [--port P]
+  fisilab-texto-cli zotero <command> <file> [--cmd 'id={json}' …] [--save OUT] [--trace] [--port P]
                                               run a Zotero command on a document (Zotero must be
                                               running): addEditCitation, addEditBibliography,
                                               addNote, refresh, removeCodes, setDocPrefs
                                               (--cmd runs first, e.g. --cmd caret.docEnd)
-  fisitexto-cli --version
+  fisilab-texto-cli --version
 ";
 
 fn open(path: &str) -> Result<Session, String> {
@@ -331,9 +331,9 @@ fn run(args: &[String]) -> Result<(), Failure> {
                     return Err("mcp: --author applies to the headless server; with --connect, run file.setAuthor".into());
                 }
                 Some(addr) => {
-                    let remote = wordcraft_mcp::Remote::connect(&addr).map_err(|e| format!("can't reach the FisiTexto app at {addr}: {e}"))?;
+                    let remote = wordcraft_mcp::Remote::connect(&addr).map_err(|e| format!("can't reach the Texto app at {addr}: {e}"))?;
                     if let Some(w) = remote.key_warning() {
-                        eprintln!("fisitexto-cli: {w}");
+                        eprintln!("fisilab-texto-cli: {w}");
                     }
                     Box::new(remote)
                 }
@@ -343,7 +343,7 @@ fn run(args: &[String]) -> Result<(), Failure> {
                         // Every thread of this process, not only the server's: nothing reaches past the roots.
                         wordcraft_engine::file_access::confine_process(roots.clone());
                         let show = |root: Option<&std::path::Path>| root.map_or_else(|| "none".to_string(), |r| r.display().to_string());
-                        eprintln!("fisitexto-cli: files confined: read root {}, write root {}", show(roots.read_root()), show(roots.write_root()));
+                        eprintln!("fisilab-texto-cli: files confined: read root {}, write root {}", show(roots.read_root()), show(roots.write_root()));
                         headless = headless.with_automation_roots(Some(roots));
                     }
                     if let Some(name) = author {
@@ -396,7 +396,7 @@ fn run(args: &[String]) -> Result<(), Failure> {
             }
             Ok(())
         }
-        "--version" | "-V" => write_stdout(|o| writeln!(o, "fisitexto-cli {}", env!("CARGO_PKG_VERSION"))),
+        "--version" | "-V" => write_stdout(|o| writeln!(o, "fisilab-texto-cli {}", env!("CARGO_PKG_VERSION"))),
         "" | "help" | "--help" | "-h" => write_stdout(|o| write!(o, "{USAGE}")),
         other => Err(format!("unknown command `{other}`\n\n{USAGE}").into()),
     }
@@ -441,7 +441,7 @@ fn main() -> ExitCode {
     match run(&args) {
         Ok(()) | Err(Failure::StdoutClosed) => ExitCode::SUCCESS,
         Err(Failure::Error(e)) => {
-            eprintln!("fisitexto-cli: {e}");
+            eprintln!("fisilab-texto-cli: {e}");
             ExitCode::FAILURE
         }
     }

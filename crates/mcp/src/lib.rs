@@ -19,7 +19,7 @@ use wordcraft_engine::Session;
 use wordcraft_engine::file_access::{self, AutomationRoots};
 
 /// Methods that need the desktop app.
-pub const NEEDS_APP: &str = "needs the desktop app: start `fisitexto --control 7981` and run `fisitexto-cli mcp --connect 127.0.0.1:7981`";
+pub const NEEDS_APP: &str = "needs the desktop app: start `fisilab-texto --control 7981` and run `fisilab-texto-cli mcp --connect 127.0.0.1:7981`";
 
 /// An in-process session.
 pub struct Headless {

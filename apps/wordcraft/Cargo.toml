@@ -4,11 +4,11 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish = false
-default-run = "fisitexto"
-description = "FisiTexto desktop app (Suíte FisiLab; based on WordCraft)"
+default-run = "fisilab-texto"
+description = "Texto desktop app (Suíte FisiLab; based on WordCraft)"
 
 [[bin]]
-name = "fisitexto"
+name = "fisilab-texto"
 path = "src/main.rs"
 
 [lints]

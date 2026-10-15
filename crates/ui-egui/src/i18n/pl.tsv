@@ -18,7 +18,7 @@
 	(no suggestions)	(brak propozycji)
 	1.5 Line Spacing	Interlinia 1,5
 	About	Informacje
-	About FisiTexto	O programie FisiTexto
+	About Texto	O programie Texto
 	Accept	Zaakceptuj
 	Accept All Changes	Zaakceptuj wszystkie zmiany
 	Accept This Change	Zaakceptuj tę zmianę
@@ -241,7 +241,7 @@
 	Envelopes	Koperty
 	Eraser	Gumka
 	Even Page	Strona parzysta
-	Every command is available to scripts and AI agents: run `fisitexto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Każde polecenie jest dostępne dla skryptów i agentów AI: uruchom `fisitexto-cli mcp`, aby włączyć serwer MCP, albo uruchom aplikację z opcją `--control <port>`, aby korzystać z kanału sterowania JSON.
+	Every command is available to scripts and AI agents: run `fisilab-texto-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Każde polecenie jest dostępne dla skryptów i agentów AI: uruchom `fisilab-texto-cli mcp`, aby włączyć serwer MCP, albo uruchom aplikację z opcją `--control <port>`, aby korzystać z kanału sterowania JSON.
 	Export	Eksportuj
 	Export PDF	Eksportuj do PDF
 	Export Page as PNG	Eksportuj stronę jako PNG
@@ -801,7 +801,7 @@
 	Word Right	Słowo w prawo
 	Word document (*.docx)	Dokument Word (*.docx)
 	WordArt	WordArt
-	FisiTexto	FisiTexto
+	Texto	Texto
 	Words	Słowa
 	Words only	Tylko wyrazy
 	Wrap Text	Zawijaj tekst
@@ -869,7 +869,7 @@
 	Stopped	Zatrzymano
 	Speed	Szybkość
 	Normal speed	Normalna szybkość
-	AutoSave documents you have saved in FisiTexto	Zapisuj automatycznie dokumenty zapisane już w programie FisiTexto
+	AutoSave documents you have saved in FisiLab Texto	Zapisuj automatycznie dokumenty zapisane już w programie FisiLab Texto
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Autozapis nie powiódł się: {error}. Zapisz dokument, aby ponownie włączyć autozapis.
 	Couldn't download {name}: {error}	Nie udało się pobrać pliku {name}: {error}
 	Do you want to save changes to {name}?	Czy zapisać zmiany w dokumencie {name}?
@@ -1090,7 +1090,7 @@
 	Glow Colors	Kolory poświaty
 	Hide from style lists	Ukryj na listach stylów
 	Indents and Spacing	Wcięcia i odstępy
-	Keep the password somewhere safe: without it nobody, FisiTexto included, can open the document. Leave both boxes empty to remove the password.	Przechowuj hasło w bezpiecznym miejscu: bez niego nikt, również FisiTexto, nie otworzy dokumentu. Pozostaw oba pola puste, aby usunąć hasło.
+	Keep the password somewhere safe: without it nobody, FisiLab Texto included, can open the document. Leave both boxes empty to remove the password.	Przechowuj hasło w bezpiecznym miejscu: bez niego nikt, również FisiLab Texto, nie otworzy dokumentu. Pozostaw oba pola puste, aby usunąć hasło.
 	Line breaking	Łamanie wierszy
 	Linked style (paragraph and character)	Styl połączony (akapitowy i znakowy)
 	Manage Styles	Zarządzaj stylami
@@ -1714,7 +1714,7 @@
 	Beginning of Word	Początek wyrazu
 	Blue:	Niebieski:
 	Border lines	Linie obramowania
-	Browse in FisiTexto…	Przeglądaj w programie FisiTexto…
+	Browse in FisiLab Texto…	Przeglądaj w programie FisiLab Texto…
 	Building Block Gallery Content Control	Formant zawartości galerii bloków konstrukcyjnych
 	Can't be deleted	Nie można usunąć
 	Capitalize first letter of sentences	Zaczynaj zdania wielką literą
@@ -1888,7 +1888,7 @@
 	Only comments can be added, except in regions marked editable.	Można dodawać tylko komentarze, z wyjątkiem obszarów oznaczonych jako edytowalne.
 	Only form fields can be filled in.	Można wypełniać tylko pola formularza.
 	Only the allowed styles can be applied.	Można stosować tylko dozwolone style.
-	Open a file with FisiTexto's own browser when the system file dialog doesn't appear.	Otwórz plik we własnej przeglądarce plików programu FisiTexto, gdy systemowe okno wyboru pliku się nie pojawia.
+	Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear.	Otwórz plik we własnej przeglądarce plików programu FisiLab Texto, gdy systemowe okno wyboru pliku się nie pojawia.
 	Ordinals (1st) as superscript	Liczebniki porządkowe (1st) jako indeks górny
 	Organizer	Organizator
 	Organizer…	Organizator…
@@ -2017,7 +2017,7 @@
 	The document is read only, except for regions marked editable.	Dokument jest tylko do odczytu, z wyjątkiem obszarów oznaczonych jako edytowalne.
 	The password is optional; without it anyone can stop the protection.	Hasło jest opcjonalne; bez niego każdy może wyłączyć ochronę.
 	The printer, two-sided printing and pages per sheet are chosen in that dialog.	Drukarkę, druk dwustronny i liczbę stron na arkuszu wybiera się w tym oknie.
-	The system file dialog isn't available, so FisiTexto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Systemowe okno wyboru pliku jest niedostępne, więc FisiTexto pokazuje własne. Aby korzystać z okna systemowego, zainstaluj portal wyboru plików (np. xdg-desktop-portal-gtk) lub zenity.
+	The system file dialog isn't available, so FisiLab Texto shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Systemowe okno wyboru pliku jest niedostępne, więc FisiLab Texto pokazuje własne. Aby korzystać z okna systemowego, zainstaluj portal wyboru plików (np. xdg-desktop-portal-gtk) lub zenity.
 	These marks show even when Show/Hide ¶ is off.	Te znaki są widoczne nawet przy wyłączonym poleceniu Pokaż wszystko ¶.
 	This document	Ten dokument
 	This folder can't be read: {error}	Nie można odczytać tego folderu: {error}
@@ -2061,15 +2061,15 @@
 	Undo 1 Action	Cofnij 1 akcję
 	Undo {n} Actions	Cofnij akcje: {n}
 	Start-up	Uruchamianie
-	Show the Start screen when FisiTexto starts	Pokazuj ekran startowy po uruchomieniu programu FisiTexto
-	On: FisiTexto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Włączone: FisiTexto otwiera się na karcie Plik › Start z pustym dokumentem, szablonami i ostatnimi dokumentami. Wyłączone: otwiera pusty dokument.
-	Couldn't make FisiTexto the default: {error}	Nie udało się ustawić FisiTexto jako domyślnego: {error}
-	In Default apps, choose FisiTexto for the document types you want it to open.	W Aplikacjach domyślnych wybierz FisiTexto dla typów dokumentów, które ma otwierać.
-	Make FisiTexto the default for Word documents…	Ustaw FisiTexto jako domyślny dla dokumentów Word…
-	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiTexto from now on.	Od teraz pliki .docx, .doc, .rtf i .odt oraz szablony Word otwierają się w FisiTexto.
-	Opens Settings › Default apps, where you choose FisiTexto for .docx and the other document types.	Otwiera Ustawienia › Aplikacje domyślne, gdzie wybierasz FisiTexto dla .docx i innych typów dokumentów.
-	To open Word documents with FisiTexto by default: select one in Finder, choose File › Get Info, pick FisiTexto under Open with, then click Change All.	Aby otwierać dokumenty Word domyślnie w FisiTexto: zaznacz jeden w Finderze, wybierz Plik › Pokaż info, wybierz FisiTexto w „Otwórz za pomocą”, a następnie kliknij „Zmień wszystkie”.
-	FisiTexto is now the default app for Word documents.	FisiTexto jest teraz domyślną aplikacją dla dokumentów Word.
+	Show the Start screen when FisiLab Texto starts	Pokazuj ekran startowy po uruchomieniu programu FisiLab Texto
+	On: FisiLab Texto opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	Włączone: FisiLab Texto otwiera się na karcie Plik › Start z pustym dokumentem, szablonami i ostatnimi dokumentami. Wyłączone: otwiera pusty dokument.
+	Couldn't make Texto the default: {error}	Nie udało się ustawić Texto jako domyślnego: {error}
+	In Default apps, choose Texto for the document types you want it to open.	W Aplikacjach domyślnych wybierz Texto dla typów dokumentów, które ma otwierać.
+	Make Texto the default for Word documents…	Ustaw Texto jako domyślny dla dokumentów Word…
+	Opens .docx, .doc, .rtf and .odt files and Word templates with FisiLab Texto from now on.	Od teraz pliki .docx, .doc, .rtf i .odt oraz szablony Word otwierają się w FisiLab Texto.
+	Opens Settings › Default apps, where you choose Texto for .docx and the other document types.	Otwiera Ustawienia › Aplikacje domyślne, gdzie wybierasz Texto dla .docx i innych typów dokumentów.
+	To open Word documents with Texto by default: select one in Finder, choose File › Get Info, pick Texto under Open with, then click Change All.	Aby otwierać dokumenty Word domyślnie w Texto: zaznacz jeden w Finderze, wybierz Plik › Pokaż info, wybierz Texto w „Otwórz za pomocą”, a następnie kliknij „Zmień wszystkie”.
+	Texto is now the default app for Word documents.	Texto jest teraz domyślną aplikacją dla dokumentów Word.
 	Numerals:	Cyfry:
 	Numerals	Cyfry
 	Hindi	Hindi

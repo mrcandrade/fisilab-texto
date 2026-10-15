@@ -266,7 +266,7 @@ fn clamp_side(v: f32) -> f32 {
 
 fn metadata(doc: &Document, opts: &PdfOptions) -> Metadata {
     let c = &doc.core;
-    let mut m = Metadata::new().creator("FisiTexto".into()).producer("FisiTexto".into());
+    let mut m = Metadata::new().creator("FisiLab Texto".into()).producer("FisiLab Texto".into());
     let title = opts.title.clone().unwrap_or_else(|| c.title.clone());
     if !title.trim().is_empty() {
         m = m.title(title);

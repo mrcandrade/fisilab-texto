@@ -301,8 +301,8 @@ fn open_page(app: &mut WordApp, ui: &mut Ui) {
     // doesn't show up, WordCraft's own browser is always one click away.
     #[cfg(all(unix, not(target_os = "macos"), not(target_arch = "wasm32")))]
     if ui
-        .button(egui::RichText::new(tl!("Browse in FisiTexto…")).font(medium(14.0)))
-        .on_hover_text(tl!("Open a file with FisiTexto's own browser when the system file dialog doesn't appear."))
+        .button(egui::RichText::new(tl!("Browse in FisiLab Texto…")).font(medium(14.0)))
+        .on_hover_text(tl!("Open a file with FisiLab Texto's own browser when the system file dialog doesn't appear."))
         .clicked()
     {
         let _ = app.run("ui.fileBrowser", json!({}));

@@ -99,7 +99,7 @@ pub fn picture() -> Option<ClipboardPicture> {
         Err(arboard::Error::ConversionFailure) => Some(
             platform::encoded_picture()
                 .map(ClipboardPicture::Encoded)
-                .unwrap_or_else(|| ClipboardPicture::Unreadable("FisiTexto can't decode its format".into())),
+                .unwrap_or_else(|| ClipboardPicture::Unreadable("Texto can't decode its format".into())),
         ),
         Err(e) => {
             log::warn!("clipboard picture: {e}");

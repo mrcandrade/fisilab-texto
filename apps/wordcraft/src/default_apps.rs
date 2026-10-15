@@ -1,12 +1,12 @@
-//! File › Options › General › Make FisiTexto the default for Word documents (#295).
+//! File › Options › General › Make Texto the default for Word documents (#295).
 //!
 //! The installers register WordCraft for Word, RTF and ODT files without taking over the
 //! defaults (`packaging/windows/wordcraft.wxs`, the `.desktop` file's `MimeType=`, `Info.plist`).
 //! This is the button that makes it the default when the user asks:
 //! - **Windows** doesn't let apps set defaults: it opens Settings › Default apps on WordCraft's
-//!   page (`ms-settings:defaultapps?registeredAppMachine=WordCraft`; Windows 10 ignores the query
+//!   page (`ms-settings:defaultapps?registeredAppMachine=FisiLab.Texto`; Windows 10 ignores the query
 //!   and shows the Default apps list), where the user picks WordCraft per type.
-//! - **Linux and BSD**: `xdg-mime default br.ufrgs.fisilab.fisitexto.desktop <types>` for
+//! - **Linux and BSD**: `xdg-mime default br.ufrgs.fisilab.texto.desktop <types>` for
 //!   [`WORD_MIME_TYPES`], which writes the user's `mimeapps.list`. Only when the desktop entry is
 //!   installed (deb, rpm, Flatpak; a bare AppImage has none), and not from inside the Flatpak
 //!   sandbox, which can't change the host's defaults.
@@ -32,7 +32,7 @@ pub fn hook() -> Option<Hook> {
 
 /// The desktop entry the Linux packages install, and the Flatpak's app id.
 #[cfg(any(all(unix, not(target_os = "macos")), test))]
-const DESKTOP_ID: &str = "br.ufrgs.fisilab.fisitexto.desktop";
+const DESKTOP_ID: &str = "br.ufrgs.fisilab.texto.desktop";
 
 /// The types the button makes WordCraft the default for on Linux and BSD: Word documents and
 /// templates (also macro-enabled and legacy), RTF and ODT. The same set the Windows installer
@@ -82,9 +82,9 @@ fn application_dirs(data_home: Option<&str>, data_dirs: Option<&str>, home: Opti
 mod windows {
     use wordcraft_ui_egui::DefaultApp;
 
-    /// Settings › Default apps, on the page of the app registered as `WordCraft` under
+    /// Settings › Default apps, on the page of the app registered as `FisiLab.Texto` under
     /// `HKLM\Software\RegisteredApplications` (the MSI writes it).
-    const SETTINGS_URI: &str = "ms-settings:defaultapps?registeredAppMachine=FisiTexto";
+    const SETTINGS_URI: &str = "ms-settings:defaultapps?registeredAppMachine=FisiLab.Texto";
 
     pub(super) fn open_default_apps() -> Result<DefaultApp, String> {
         open::that_detached(SETTINGS_URI).map_err(|e| format!("couldn't open Settings: {e}"))?;
@@ -106,7 +106,7 @@ mod xdg {
     pub(super) fn make_default() -> Result<DefaultApp, String> {
         if std::env::var_os("FLATPAK_ID").is_some() || std::path::Path::new("/.flatpak-info").exists() {
             return Err(
-                "the Flatpak sandbox can't change default apps; choose FisiTexto under Open With in your file manager or system settings".into()
+                "the Flatpak sandbox can't change default apps; choose Texto under Open With in your file manager or system settings".into()
             );
         }
         let var = |k: &str| std::env::var(k).ok();
@@ -139,7 +139,7 @@ mod tests {
     fn xdg_mime_sets_every_word_type_in_one_call() {
         let args = xdg_mime_args(DESKTOP_ID);
         assert_eq!(args.first().map(String::as_str), Some("default"));
-        assert_eq!(args.get(1).map(String::as_str), Some("br.ufrgs.fisilab.fisitexto.desktop"));
+        assert_eq!(args.get(1).map(String::as_str), Some("br.ufrgs.fisilab.texto.desktop"));
         assert_eq!(&args[2..], WORD_MIME_TYPES);
         for t in [
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -155,13 +155,13 @@ mod tests {
     /// Every type the button claims is one the desktop entry declares, or desktops ignore it.
     #[test]
     fn the_desktop_entry_declares_every_claimed_type() {
-        let entry = include_str!("../../../packaging/linux/br.ufrgs.fisilab.fisitexto.desktop");
+        let entry = include_str!("../../../packaging/linux/br.ufrgs.fisilab.texto.desktop");
         let declared: Vec<&str> =
             entry.lines().find_map(|l| l.strip_prefix("MimeType=")).map(|v| v.split(';').filter(|s| !s.is_empty()).collect()).unwrap_or_default();
         for t in WORD_MIME_TYPES {
             assert!(declared.contains(t), "{t} missing from MimeType=");
         }
-        assert!(entry.lines().any(|l| l == "Exec=fisitexto %F"), "files are passed on the command line");
+        assert!(entry.lines().any(|l| l == "Exec=fisilab-texto %F"), "files are passed on the command line");
     }
 
     #[cfg(unix)]
