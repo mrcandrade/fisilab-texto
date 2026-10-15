@@ -602,7 +602,7 @@ impl Session {
             macros: Default::default(),
             versions: Vec::new(),
             building_blocks: Default::default(),
-            autosave: true,
+            autosave: false,
             bib_style,
             merge: Default::default(),
             ui_requests: Vec::new(),

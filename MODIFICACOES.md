@@ -85,6 +85,13 @@ Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
 - `README.md` novo, em português; o original está em `README.upstream.md`.
 - `NOTICE` ganhou um cabeçalho do Texto; o texto original segue abaixo dele, sem alterações.
 
+## Segurança e privacidade
+- O AutoSave agora vem **desligado** em uma instalação nova (`crates/ui-egui/src/lib.rs` e
+  `crates/engine/src/session.rs`). Antes vinha ligado e, depois de um Salvar, reescrevia o arquivo
+  do aluno a cada alteração, sem deixar a versão anterior. A preferência não é gravada em disco; o
+  usuário continua podendo ligá-lo pelo botão AutoSave ou em Opções, e a recuperação de documentos
+  não salvos (`file.recover`) não depende dele.
+
 ## O que não mudou
 - Todo o editor: formatos de arquivo, diagramação, comandos, atalhos, revisão, mala direta,
   automação (CLI, canal de controle, MCP) e as traduções existentes.

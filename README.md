@@ -31,6 +31,8 @@
 - **Revisão:** ortografia e gramática enquanto você digita, comentários nas margens, controle de
   alterações (aceitar e rejeitar), comparação de documentos e verificador de acessibilidade.
 - **Mala direta:** a partir de um CSV, com campos, bloco de endereço, envelopes e etiquetas.
+- **Sem sobrescrever sem querer:** o AutoSave vem desligado; ligue-o no botão AutoSave ou em
+  Arquivo › Opções se quiser que o arquivo seja regravado a cada alteração.
 - **Privado e rápido:** tudo funciona sem internet; o texto é diagramado em Rust nativo, na GPU.
 - **Automação:** cada ação é um comando, disponível pela linha de comando (`fisilab-texto-cli`), por
   um canal de controle JSON e por um servidor MCP para agentes de IA.

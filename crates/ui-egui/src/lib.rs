@@ -546,7 +546,7 @@ impl WordApp {
             frame_ms: 0.0,
             sent_title: String::new(),
             quit_requested: false,
-            autosave: true,
+            autosave: false,
             word_count: (0, 0),
             last_autosave: 0.0,
             equation_prev_tab: None,
@@ -3733,6 +3733,7 @@ mod tests {
             let dir = scratch(&format!("autosave-{ext}"));
             let path = dir.join(format!("novel.{ext}"));
             let mut a = typed();
+            a.autosave = true;
             a.run("file.save", json!({"path": path.to_string_lossy()})).unwrap();
             assert!(a.autosaves(), "{ext}");
             a.run("text.insert", json!({"text": "More "})).unwrap();
@@ -3876,6 +3877,7 @@ mod tests {
             let dir = scratch(&format!("mailings-{}", id.len()));
             let path = docx_on_disk(&dir, "Signed contract");
             let mut a = app();
+            a.autosave = true;
             a.run("file.open", json!({"path": path.to_string_lossy()})).unwrap();
             a.run("text.insert", json!({"text": "Revised "})).unwrap();
             a.run("file.save", json!({})).unwrap();
@@ -3976,6 +3978,25 @@ mod tests {
         }
     }
 
+    /// A fresh install does not rewrite the student's file on its own: AutoSave starts off, in the
+    /// app and in the engine session, and a saved document is left alone until the user turns it on.
+    #[test]
+    fn autosave_is_off_by_default() {
+        let dir = scratch("autosave-default");
+        let path = dir.join("novel.docx");
+        let mut a = typed();
+        assert!(!a.autosave && !a.session.autosave && !a.autosaves());
+        a.run("file.save", json!({"path": path.to_string_lossy()})).unwrap();
+        a.run("text.insert", json!({"text": "More "})).unwrap();
+        a.autosave_tick(now_ms() + 10_000.0);
+        assert!(a.session.dirty, "nothing was written behind the user's back");
+        a.run("file.autosave", json!({"value": true})).unwrap();
+        assert!(a.autosaves(), "the user can still turn it on");
+        a.autosave_tick(now_ms() + 20_000.0);
+        assert!(!a.session.dirty);
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
     /// Surfaces finding 3: AutoSave rewrote any opened .docx ~2.5 s after the first keystroke,
     /// deleting whatever the reader doesn't model (content controls, charts, macros…).
     #[test]
@@ -3984,6 +4005,7 @@ mod tests {
         let path = docx_on_disk(&dir, "Original");
         let before = std::fs::read(&path).unwrap();
         let mut a = app();
+        a.autosave = true;
         a.run("file.open", json!({"path": path.to_string_lossy()})).unwrap();
         a.run("text.insert", json!({"text": "Typed "})).unwrap();
         a.autosave_tick(now_ms() + 10_000.0);
@@ -4010,6 +4032,7 @@ mod tests {
         let md = dir.join("notes.md");
         std::fs::write(&md, "# Notes\n\nSome text\n").unwrap();
         let mut a = app();
+        a.autosave = true;
         assert_eq!(a.autosave_block(), Some(AutoSaveBlock::Unsaved), "a new document has no file yet");
         a.run("file.open", json!({"path": md.to_string_lossy()})).unwrap();
         a.run("text.insert", json!({"text": "Typed "})).unwrap();
@@ -4057,6 +4080,7 @@ mod tests {
         let dir = scratch("autosave-open");
         let path = dir.join("novel.docx");
         let mut a = typed();
+        a.autosave = true;
         a.services.pick_open = Some(Box::new(|_| None));
         a.run("file.save", json!({"path": path.to_string_lossy()})).unwrap();
         assert!(a.autosaves());
@@ -4078,6 +4102,7 @@ mod tests {
         let path = dir.join("gone").join("novel.docx");
         std::fs::create_dir_all(path.parent().unwrap()).unwrap();
         let mut a = typed();
+        a.autosave = true;
         a.run("file.save", json!({"path": path.to_string_lossy()})).unwrap();
         // The folder disappears (unplugged drive, network share gone).
         std::fs::remove_dir_all(path.parent().unwrap()).unwrap();
