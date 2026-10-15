@@ -79,6 +79,12 @@ Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
   O zip portátil contém a pasta `fisilab-texto-<versão>-windows-<arq>-portable`. O instalador
   oficial da suíte é gerado separadamente (Inno Setup).
 
+### Empacotamento Linux
+
+- O empacotamento para Linux (AppImage e .deb) usa os novos nomes, ícones e identificadores:
+  `FisiLab-Texto-<versão>-x86_64.AppImage`, `fisilab-texto_<versão>_amd64.deb`, binários
+  `fisilab-texto` e `fisilab-texto-cli` e o identificador `br.ufrgs.fisilab.texto`.
+
 ### Repositório
 - Removida a pasta `.github/` (fluxos de CI, release e lint do projeto original, que rodariam
   contra este fork).
@@ -99,7 +105,5 @@ Suíte FisiLab. As modificações seguem os mesmos termos (MIT OR Apache-2.0).
   (`WORDCRAFT_*`), o identificador do servidor MCP (`wordcraft`), URIs `wordcraft://`, e os
   comentários e a documentação histórica em `docs/`.
 - `LICENSE-MIT`, `LICENSE-APACHE` e `ATTRIBUTION.md`.
-- Os temas originais Claro, Escuro e Sistema, e os scripts de empacotamento para Linux, macOS e web
-  (só o arquivo `.desktop`, o metainfo, o MIME e o `APP_ID` dos scripts do Linux passaram ao novo
-  identificador; esses scripts ainda esperam os binários e ícones com os nomes antigos, não foram
-  adaptados e não são usados pela suíte, que distribui apenas para Windows).
+- Os temas originais Claro, Escuro e Sistema, e os scripts de empacotamento para macOS e web (não adaptados;
+  a suíte distribui para Windows e Linux).

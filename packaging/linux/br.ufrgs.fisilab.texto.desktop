@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=Texto
-GenericName=Word Processor
-Comment=Write and design documents; open and save Word files
+GenericName=Processador de texto
+Comment=Processador de texto — Suíte FisiLab (alternativa livre)
 Exec=fisilab-texto %F
 TryExec=fisilab-texto
 Icon=br.ufrgs.fisilab.texto
@@ -10,5 +10,5 @@ Terminal=false
 StartupNotify=true
 StartupWMClass=br.ufrgs.fisilab.texto
 Categories=Office;WordProcessor;
-Keywords=word;processor;document;docx;writer;text;letter;report;
+Keywords=word;processor;document;docx;writer;text;letter;report;processador;texto;documento;
 MimeType=application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.ms-word.document.macroEnabled.12;application/vnd.openxmlformats-officedocument.wordprocessingml.template;application/vnd.ms-word.template.macroEnabled.12;application/msword;application/msword-template;application/vnd.oasis.opendocument.text;application/rtf;text/rtf;text/markdown;text/x-tex;text/html;text/plain;

@@ -3,7 +3,7 @@
 # exports VERSION and NFPM_ARCH.
 #
 #   nfpm package -f packaging/linux/nfpm.yaml -p deb -t dist/release/
-name: wordcraft
+name: fisilab-texto
 arch: ${NFPM_ARCH}
 platform: linux
 version: ${VERSION}
@@ -13,14 +13,16 @@ release: 1
 section: graphics
 priority: optional
 maintainer: ${WORDCRAFT_MAINTAINER}
-vendor: FisiLab — LARFIC/UFRGS
-homepage: https://github.com/mrcandrade/fisilab-texto
+vendor: FisiLab - LARFIC/UFRGS
+homepage: https://github.com/mrcandrade/larfic
 license: MIT OR Apache-2.0
 description: |-
-  Open-source, native word processor that works the way Word users expect.
-  The ribbon, styles, tables, track changes, references and mail merge; reads
-  and writes .docx, opens .odt, .rtf, .html, .md and .txt, and exports PDF.
-  Includes wordcraft-cli, a headless converter and command runner.
+  Texto, o processador de texto da Suíte FisiLab (UFRGS): alternativa livre
+  e nativa que funciona como os usuários do Word esperam. Faixa de opções,
+  estilos, tabelas, controle de alterações, referências e mala direta; lê e
+  grava .docx, abre .odt, .rtf, .html, .md e .txt e exporta PDF. Inclui
+  fisilab-texto-cli, conversor e executor de comandos sem janela.
+  Baseado no WordCraft, do ArtCraft Team e contribuidores (MIT ou Apache 2.0).
 
 # The binaries link only glibc and libgcc_s directly. Windowing (X11/Wayland, xkbcommon) and the
 # GPU (Vulkan, EGL/GL) are loaded at runtime, so they are dependencies/recommendations here
@@ -55,11 +57,11 @@ overrides:
       - xdg-desktop-portal
 
 contents:
-  - src: ${STAGE}/usr/bin/wordcraft
-    dst: /usr/bin/wordcraft
+  - src: ${STAGE}/usr/bin/fisilab-texto
+    dst: /usr/bin/fisilab-texto
     file_info: { mode: 0755 }
-  - src: ${STAGE}/usr/bin/wordcraft-cli
-    dst: /usr/bin/wordcraft-cli
+  - src: ${STAGE}/usr/bin/fisilab-texto-cli
+    dst: /usr/bin/fisilab-texto-cli
     file_info: { mode: 0755 }
   - src: ${STAGE}/usr/share/
     dst: /usr/share/

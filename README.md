@@ -47,6 +47,10 @@ Opções. As cores são as originais do WordCraft, com as opções de tema **Noi
 
 Baixe o instalador `FisiLab-Texto-Setup-<versão>.exe` na [página de downloads da Suíte FisiLab](https://github.com/mrcandrade/larfic/releases/latest) e execute-o.
 
+### Linux
+
+Baixe o `FisiLab-Texto-<versão>-x86_64.AppImage` na [página de downloads da Suíte FisiLab](https://github.com/mrcandrade/larfic/releases/latest), marque-o como executável (`chmod +x` ou Propriedades › Permitir executar) e abra-o. No Ubuntu/Debian também é possível instalar o `fisilab-texto_<versão>_amd64.deb` com `sudo apt install ./fisilab-texto_<versão>_amd64.deb`. Requer Ubuntu 22.04 ou mais recente (ou equivalente).
+
 ### Compilar a partir do código
 
 É preciso ter o [Rust](https://www.rust-lang.org/pt-BR/tools/install) instalado.

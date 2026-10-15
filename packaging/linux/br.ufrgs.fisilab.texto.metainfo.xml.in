@@ -6,21 +6,20 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT OR Apache-2.0</project_license>
   <name>Texto</name>
-  <summary>Processador de texto da Suíte FisiLab (UFRGS)</summary>
+  <summary>Processador de texto — Suíte FisiLab (alternativa livre)</summary>
   <developer id="br.ufrgs.fisilab">
-    <name>FisiLab — LARFIC/UFRGS</name>
+    <name>FisiLab — LARFIC</name>
   </developer>
   <description>
     <p>
-      Texto é um processador de texto livre, com faixa de opções familiar: estilos, tabelas, controle de alterações, referências, mala direta e arquivos .docx, PDF, ODT, RTF, HTML e Markdown. Faz parte da Suíte FisiLab, disponibilizada pelo FisiLab — LARFIC · UFRGS em parceria com o CTA — Centro de Tecnologia Acadêmica. Baseado no WordCraft (ArtCraft Team e contribuidores).
+      Texto é um processador de texto livre, com faixa de opções familiar: estilos, tabelas, controle de alterações, referências, mala direta e arquivos .docx, PDF, ODT, RTF, HTML e Markdown. Faz parte da Suíte FisiLab, disponibilizada pelo FisiLab — LARFIC · UFRGS em parceria com o CTA — Centro de Tecnologia Acadêmica. Baseado no WordCraft, do ArtCraft Team e contribuidores (MIT ou Apache 2.0).
     </p>
   </description>
   <launchable type="desktop-id">br.ufrgs.fisilab.texto.desktop</launchable>
   <icon type="stock">br.ufrgs.fisilab.texto</icon>
   <!-- Only url types known to appstream 0.15 (Ubuntu 22.04, where CI validates): no vcs-browser. -->
-  <url type="homepage">https://github.com/mrcandrade/larfic/tree/main/suite-fisilab</url>
+  <url type="homepage">https://github.com/mrcandrade/larfic</url>
   <url type="bugtracker">https://github.com/mrcandrade/fisilab-texto/issues</url>
-  <url type="help">https://github.com/mrcandrade/fisilab-texto</url>
   <categories>
     <category>Office</category>
     <category>WordProcessor</category>
@@ -31,12 +30,6 @@
     <keyword>document</keyword>
     <keyword>writer</keyword>
   </keywords>
-  <screenshots>
-    <screenshot type="default">
-      <caption>The Open Studio Handbook sample with the Navigation pane</caption>
-      <image>https://raw.githubusercontent.com/mrcandrade/fisilab-texto/main/docs/images/hero.png</image>
-    </screenshot>
-  </screenshots>
   <branding>
     <color type="primary" scheme_preference="light">#f2eada</color>
     <color type="primary" scheme_preference="dark">#1a2532</color>
@@ -49,7 +42,7 @@
     <control>pointing</control>
     <control>tablet</control>
   </supports>
-  <!-- Document types WordCraft opens (#295), as in the desktop entry's MimeType=. -->
+  <!-- Document types Texto opens (#295), as in the desktop entry's MimeType=. -->
   <provides>
     <binary>fisilab-texto</binary>
     <mediatype>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mediatype>
